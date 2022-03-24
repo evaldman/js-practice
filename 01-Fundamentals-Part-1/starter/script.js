@@ -12,7 +12,7 @@ console.log(firstName);
 */
 
 
-
+console.log("challenge 1:")
 const massMark = 78
 const heightMark = 1.69
 const massJohn = 92
@@ -42,8 +42,8 @@ console.log(`string with
 multiple
 lines`)
 */
-///////////// if / else
-
+///////////// if / else /////////
+/*
 const age = 15
 //const isOldEnough = age >= 18
 
@@ -62,9 +62,44 @@ if (birthYear <= 2000) {
     century = 21
 }
 console.log(century)
+*/
 
+console.log("challenge 2:")
 if (markHigherBMI) {
     console.log(`Mark's BMI (${bmiMark}) is higher`)
 } else {
     console.log(`Johns's BMI (${bmiJohn}) is higher`)
 }
+
+///////// type conversion or coercion ////////////
+/// type conversion - when we manually convert from one type to another
+/// type coercion - when js automatically converts types behind the scenes for us
+
+//conversion//
+/*
+const inputYear = "1991"
+console.log(Number(inputYear), inputYear)
+console.log(inputYear + 18)
+console.log(Number(inputYear) + 18)
+
+console.log(Number("string"))
+console.log(typeof NaN)
+console.log(String(23), 23)
+
+//coercion//
+console.log("I am " + 23 + " years old") //becomes string
+console.log("23" - "10" - 3 ) //becomes number
+console.log("23" / "2") //becomes number
+
+let n = "1" + 1
+n = n - 1
+console.log(n) // n = 10
+*/
+
+////////// truthy and falsy values ////////////
+
+// 5 falsy values: 0, "", undefined, null, Nan //
+
+
+
+
