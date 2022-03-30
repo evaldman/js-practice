@@ -22,6 +22,7 @@ const markHigherBMI = bmiMark > bmiJohn;
 
 console.log(bmiMark, bmiJohn);
 console.log(markHigherBMI);
+console.log("_______________");
 
 /*
 const firstName = 'Jonas'
@@ -68,6 +69,7 @@ if (markHigherBMI) {
 } else {
   console.log(`Johns's BMI (${bmiJohn}) is higher`);
 }
+console.log("_______________");
 
 ///////// type conversion or coercion ////////////
 /// type conversion - when we manually convert from one type to another
@@ -159,7 +161,7 @@ B | true  | true  | false
 B | true  | true  | true
   |   ----|-------|----
   | false | true  | false
-  
+
   // not A, not B // inverts true/false value - does not combine multiple values, acts on only one boolean value
   
   age = 16
@@ -171,3 +173,35 @@ B | true  | true  | true
   !A and B - true
   A or !B - false
   */
+
+/////// Logical operators ///////
+////// && = and, || = or, ! = not //////
+
+const hasDriversLicense = true;
+const hasGoodVision = true;
+const hasBadVision = false;
+
+console.log(hasDriversLicense && hasGoodVision);
+console.log(hasDriversLicense && hasBadVision);
+console.log(hasDriversLicense || hasBadVision);
+console.log(!hasDriversLicense);
+
+/*
+if (hasDriversLicense && hasGoodVision) {
+  console.log("sarah can drive");
+} else {
+  console.log("let someone else drive");
+}
+*/
+
+const isTired = true;
+
+console.log(hasDriversLicense || hasGoodVision || isTired);
+console.log(hasDriversLicense && hasGoodVision && isTired);
+console.log(hasDriversLicense && hasGoodVision && !isTired);
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+  console.log("sarah can drive");
+} else {
+  console.log("let someone else drive");
+}
