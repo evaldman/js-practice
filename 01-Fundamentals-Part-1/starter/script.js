@@ -240,3 +240,30 @@ if (dolphinsAverage1 > koalasAverage1 && dolphinsAverage1 >= 100) {
   console.log("no one wins");
 }
 console.log("_______________");
+
+//////// switch ///////// - does a strict comparison!!
+
+const day = "monday";
+
+switch (day) {
+  case "monday": // day === monday
+    console.log("plan course structure");
+    console.log("go to the gym");
+    break;
+  case "tuesday":
+    console.log("prepare theory videos");
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log("write code examples");
+    break;
+  case "friday":
+    console.log("record videos");
+    break;
+  case "saturday":
+  case "sunday":
+    console.log("weekend!!");
+    break;
+  default:
+    console.log("not a valid day");
+}
