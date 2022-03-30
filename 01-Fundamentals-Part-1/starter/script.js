@@ -1,7 +1,6 @@
- // let js = "amazing";
+// let js = "amazing";
 
 // if (js === "amazing") alert("Javascript is FUN!");
-
 
 // 40 + 8 + 23 - 10;
 /*
@@ -11,19 +10,18 @@ let firstName = "Jonas";
 console.log(firstName);
 */
 
+console.log("challenge 1:");
+const massMark = 78;
+const heightMark = 1.69;
+const massJohn = 92;
+const heightJohn = 1.95;
 
-console.log("challenge 1:")
-const massMark = 78
-const heightMark = 1.69
-const massJohn = 92
-const heightJohn = 1.95
+const bmiMark = massMark / heightMark ** 2;
+const bmiJohn = massJohn / heightJohn ** 2;
+const markHigherBMI = bmiMark > bmiJohn;
 
-const bmiMark = massMark / heightMark ** 2
-const bmiJohn = massJohn / heightJohn ** 2
-const markHigherBMI = bmiMark > bmiJohn
-
-console.log(bmiMark, bmiJohn)
-console.log(markHigherBMI)
+console.log(bmiMark, bmiJohn);
+console.log(markHigherBMI);
 
 /*
 const firstName = 'Jonas'
@@ -64,11 +62,11 @@ if (birthYear <= 2000) {
 console.log(century)
 */
 
-console.log("challenge 2:")
+console.log("challenge 2:");
 if (markHigherBMI) {
-    console.log(`Mark's BMI (${bmiMark}) is higher`)
+  console.log(`Mark's BMI (${bmiMark}) is higher`);
 } else {
-    console.log(`Johns's BMI (${bmiJohn}) is higher`)
+  console.log(`Johns's BMI (${bmiJohn}) is higher`);
 }
 
 ///////// type conversion or coercion ////////////
@@ -100,6 +98,31 @@ console.log(n) // n = 10
 
 // 5 falsy values: 0, "", undefined, null, Nan //
 
+///// equality operators //////
 
+// const age = 18;
 
+// if (age === 18) console.log("you're and adult (strict)");
+// if (age == 18) console.log("you're and adult (loose)");
 
+const favorite = prompt("What's your favorite number?");
+console.log(favorite);
+console.log(typeof favorite);
+
+if (favorite == 23) {
+  // "23" == 23
+  console.log("23 is a great number");
+}
+
+if (favorite === 23) {
+  // "23" does not === 23
+  console.log("is 23 a number?");
+}
+
+const favorite2 = Number(prompt("What's your favorite number?"));
+console.log(favorite2);
+
+if (favorite2 === 24) {
+  // "24" === 24
+  console.log("is 24 a number?");
+}
