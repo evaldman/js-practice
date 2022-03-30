@@ -177,6 +177,7 @@ B | true  | true  | true
 /////// Logical operators ///////
 ////// && = and, || = or, ! = not //////
 
+/*
 const hasDriversLicense = true;
 const hasGoodVision = true;
 const hasBadVision = false;
@@ -186,13 +187,13 @@ console.log(hasDriversLicense && hasBadVision);
 console.log(hasDriversLicense || hasBadVision);
 console.log(!hasDriversLicense);
 
-/*
-if (hasDriversLicense && hasGoodVision) {
-  console.log("sarah can drive");
-} else {
-  console.log("let someone else drive");
-}
-*/
+
+//if (hasDriversLicense && hasGoodVision) {
+//  console.log("sarah can drive");
+//} else {
+//  console.log("let someone else drive");
+//}
+
 
 const isTired = true;
 
@@ -205,3 +206,37 @@ if (hasDriversLicense && hasGoodVision && !isTired) {
 } else {
   console.log("let someone else drive");
 }
+*/
+
+console.log("challenge 3:");
+const dolphinsAverage = (96 + 108 + 89) / 3;
+console.log(`Dolphins average is ${dolphinsAverage}`);
+const koalasAverage = (88 + 91 + 110) / 3;
+console.log(`Koalas average is ${koalasAverage}`);
+
+if (dolphinsAverage > koalasAverage) {
+  console.log("Dolphins are the winner");
+} else if (dolphinsAverage < koalasAverage) {
+  console.log("Koalas are the winner");
+} else if (dolphinsAverage === koalasAverage) {
+  console.log("It is a draw");
+}
+console.log("bonus1:");
+const dolphinsAverage1 = (97 + 112 + 80) / 3;
+console.log(`Dolphins average is ${dolphinsAverage1}`);
+const koalasAverage1 = (109 + 95 + 50) / 3;
+console.log(`Koalas average is ${koalasAverage1}`);
+if (dolphinsAverage1 > koalasAverage1 && dolphinsAverage1 >= 100) {
+  console.log("Dolphins are the winner");
+} else if (dolphinsAverage1 < koalasAverage1 && koalasAverage1 >= 100) {
+  console.log("Koalas are the winner");
+} else if (
+  dolphinsAverage1 === koalasAverage1 &&
+  dolphinsAverage1 >= 100 &&
+  koalasAverage1 >= 100
+) {
+  console.log("It is a draw");
+} else {
+  console.log("no one wins");
+}
+console.log("_______________");
