@@ -242,8 +242,8 @@ if (dolphinsAverage1 > koalasAverage1 && dolphinsAverage1 >= 100) {
 console.log("_______________");
 
 //////// switch ///////// - does a strict comparison!!
-
-const day = "monday";
+/*
+const day = "saturday";
 
 switch (day) {
   case "monday": // day === monday
@@ -267,3 +267,28 @@ switch (day) {
   default:
     console.log("not a valid day");
 }
+
+if (day === "monday") {
+  console.log("plan course structure");
+  console.log("go to the gym");
+} else if (day === "tuesday") {
+  console.log("prepare theory videos");
+} else if (day === "wednesday" || day === "thursday") {
+  console.log("write code examples");
+} else if (day === "friday") {
+  console.log("record videos");
+} else if (day === "saturday" || day === "sunday") {
+  console.log("weekend!!");
+} else {
+  console.log("not a valid day");
+}
+*/
+
+///////// statements and expressions ///////////
+// expression - piece of code that produces a value
+/// example: 3 + 4, 1991, true, false, !false (all produce values)
+// statements - bigger piece of code that is executed  and does not produce a value on itself
+/// example: this statement does nor produce a value, it only declares this variable called str.. only performs some action, while the string "23 is bigger" is the expression
+// if (23 > 10) {
+// const str = "23 is bigger"
+// }
