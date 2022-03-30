@@ -292,3 +292,23 @@ if (day === "monday") {
 // if (23 > 10) {
 // const str = "23 is bigger"
 // }
+
+//////// conditional (ternary) operator ///////////
+const age = 23;
+age >= 18 ? console.log("I'm older than 18") : console.log("Not older than 18");
+//condition ? if : else
+
+const older = age >= 18 ? "older" : "not older";
+console.log(older);
+
+// same statement:
+let older2;
+if (age >= 18) {
+  older2 = "older";
+} else {
+  older2 = "not older";
+}
+console.log(older2);
+////////****** */ if else is a statement... ternary is an expression *****//////
+///// cannot put if else statement in template literal but can put ternary ///
+console.log(`I am ${age >= 18 ? "older" : "not older"} than 18`);
