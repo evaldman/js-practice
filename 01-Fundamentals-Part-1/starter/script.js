@@ -104,7 +104,7 @@ console.log(n) // n = 10
 
 // if (age === 18) console.log("you're and adult (strict)");
 // if (age == 18) console.log("you're and adult (loose)");
-
+/*
 const favorite = prompt("What's your favorite number?");
 console.log(favorite);
 console.log(typeof favorite);
@@ -118,11 +118,22 @@ if (favorite === 23) {
   // "23" does not === 23
   console.log("is 23 a number?");
 }
-
+// can convert the prompt input to number instead of string //
 const favorite2 = Number(prompt("What's your favorite number?"));
 console.log(favorite2);
 
 if (favorite2 === 24) {
   // "24" === 24
   console.log("is 24 a number?");
+} else if (favorite2 === 7) {
+  console.log("7 is great");
+} else if (favorite2 === 9) {
+  console.log("9!!!");
+} else {
+  console.log("not 24 or 7 or 9");
 }
+// does not equal: != loose, !== strict
+if (favorite2 !== 24) console.log("why not 24");
+*/
+
+//////// boolean logic ///////
