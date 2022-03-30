@@ -137,3 +137,37 @@ if (favorite2 !== 24) console.log("why not 24");
 */
 
 //////// boolean logic ///////
+
+// A and B // true when all are true
+
+/*
+             A
+        ------------
+  | and   | true  | false 
+  |   ----|-------|----
+B | true  | true  | false
+  |   ----|-------|----
+  | false | false | false
+*/
+
+// A or B // true when one is true
+/*
+             A
+        ------------
+  |  or   | true  | false 
+  |   ----|-------|----
+B | true  | true  | true
+  |   ----|-------|----
+  | false | true  | false
+  
+  // not A, not B // inverts true/false value - does not combine multiple values, acts on only one boolean value
+  
+  age = 16
+  A: age is greater or equal 20 - false
+  B: age is less than 30 - true
+  !A - true
+  A and B - false
+  A or B - true
+  !A and B - true
+  A or !B - false
+  */
