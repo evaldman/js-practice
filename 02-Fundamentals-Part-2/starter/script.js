@@ -16,7 +16,7 @@ const private = 534;
 */
 
 ///////// functions /////////
-
+/*
 function logger() {
   console.log("My name is Eugene");
 }
@@ -42,3 +42,26 @@ console.log(appleOrangeJuice);
 // not all functions need to return something, not all functions need to have parameters //
 
 ///// keep our code dry - don't repeat ourselves..  ie: reuse functions /////
+*/
+/////// function declarations vs expressions ////////
+
+// function declaration:
+function calcAge1(birthYear) {
+  //const age = 2037 - birthYear;
+  //return age;
+  // can skip creating a variable and just return the calculation you want
+  return 2037 - birthYear;
+}
+// parameter is the place holder in the function for the value when we call it
+// argument is the actual value that we use to fill in that place holder(parameter)
+const age1 = calcAge1(1991);
+console.log(age1);
+
+// function expression: produce values
+const calcAge2 = function (birthYear) {
+  return 2037 - birthYear;
+};
+const age2 = calcAge2(1991);
+console.log(age2);
+
+//// ***** the big difference is that you can call the declaration before it is defined, expression can not ****** ////
