@@ -86,7 +86,7 @@ console.log(yearsUntilRetirement(1980, "Sam"));
 //// ******* arrow functions do not get a 'this' keyword ****** /////
 */
 //// functions calling other functions /////
-
+/*
 function cutFruitPieces(fruit) {
   return fruit * 4;
 }
@@ -98,3 +98,47 @@ function fruitProcessor(apples, oranges) {
   return juice;
 }
 console.log(fruitProcessor(2, 3));
+*/
+/*
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+//parameters are local variables and are not related between functions(birthYear)
+const yearsUntilRetirement = function (birthYear, firstName) {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+  if (retirement > 0) {
+    return `${firstName} retires in ${retirement} years`;
+  } else {
+    return `${firstName} has already retired`;
+  }
+};
+console.log(yearsUntilRetirement(1991, "Bob"));
+console.log(yearsUntilRetirement(1970, "Sam"));
+*/
+
+console.log("challenge 1:");
+
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+
+let scoreDolphins = calcAverage(44, 23, 71);
+let scoreKoalas = calcAverage(65, 54, 49);
+
+//console.log(scoreDolphins, scoreKoalas);
+
+function checkWinner(avgDolphins, avgKoalas) {
+  if (avgDolphins >= 2 * avgKoalas) {
+    console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
+  } else if (avgKoalas >= 2 * avgDolphins) {
+    console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);
+  } else {
+    console.log("No one wins");
+  }
+}
+checkWinner(scoreDolphins, scoreKoalas); // test data 1
+
+scoreDolphins = calcAverage(85, 54, 41);
+scoreKoalas = calcAverage(23, 34, 27);
+checkWinner(scoreDolphins, scoreKoalas); // test data 2
+
+console.log("_______________");
