@@ -67,7 +67,7 @@ console.log(age2);
 //// ***** the big difference is that you can call the declaration before it is defined, expression can not ****** ////
 
 /////// arrow functions ///////
-
+/*
 const calcAge3 = (birthYear) => 2037 - birthYear;
 //return happens implicitly
 console.log(calcAge3(1991));
@@ -84,3 +84,17 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 console.log(yearsUntilRetirement(1991, "Bob"));
 console.log(yearsUntilRetirement(1980, "Sam"));
 //// ******* arrow functions do not get a 'this' keyword ****** /////
+*/
+//// functions calling other functions /////
+
+function cutFruitPieces(fruit) {
+  return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+  const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces`;
+  return juice;
+}
+console.log(fruitProcessor(2, 3));
