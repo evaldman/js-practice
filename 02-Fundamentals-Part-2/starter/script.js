@@ -44,7 +44,7 @@ console.log(appleOrangeJuice);
 ///// keep our code dry - don't repeat ourselves..  ie: reuse functions /////
 */
 /////// function declarations vs expressions ////////
-
+/*
 // function declaration:
 function calcAge1(birthYear) {
   //const age = 2037 - birthYear;
@@ -63,5 +63,24 @@ const calcAge2 = function (birthYear) {
 };
 const age2 = calcAge2(1991);
 console.log(age2);
-
+*/
 //// ***** the big difference is that you can call the declaration before it is defined, expression can not ****** ////
+
+/////// arrow functions ///////
+
+const calcAge3 = (birthYear) => 2037 - birthYear;
+//return happens implicitly
+console.log(calcAge3(1991));
+//or
+const age3 = calcAge3(1991);
+console.log(age3);
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+  const age = 2037 - birthYear;
+  const retirement = 65 - age;
+  return `${firstName} retires in ${retirement} years`;
+};
+///// ***** return is only implicit in one line arrow functions ***** //////
+console.log(yearsUntilRetirement(1991, "Bob"));
+console.log(yearsUntilRetirement(1980, "Sam"));
+//// ******* arrow functions do not get a 'this' keyword ****** /////
