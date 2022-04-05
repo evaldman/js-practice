@@ -242,3 +242,17 @@ console.log(tips);
 console.log(total);
 
 console.log("_______________");
+
+//////// objects ///////////
+// define key, value pairs
+// key is also called a property
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  age: 2037 - 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+};
+console.log(jonas);
+console.log(jonas.age);
+console.log(jonas.friends);
