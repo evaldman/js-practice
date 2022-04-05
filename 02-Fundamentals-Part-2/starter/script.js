@@ -288,7 +288,7 @@ console.log(
 );
 */
 /////// object methods ///////////
-
+/*
 const jonas = {
   firstName: "Jonas",
   lastName: "Schmedtmann",
@@ -330,3 +330,35 @@ console.log(jonas.age); // jonas.age does not exist until we call jonas.calcAge
 // mini challenge
 // write a method called getSummary with "Jonas is a 46-year old teacher. And he has a drivers license"
 console.log(jonas.getSummary());
+*/
+
+console.log("challenge 3:");
+const mark = {
+  name: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBmi: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+const john = {
+  name: "John Smith",
+  mass: 92,
+  height: 1.95,
+  calcBmi: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+if (mark.calcBmi() > john.calcBmi()) {
+  console.log(
+    `${mark.name}'s BMI (${mark.bmi}) is higher than ${john.name}'s (${john.bmi})`
+  );
+} else {
+  console.log(
+    `${john.name}'s BMI (${john.bmi}) is higher than ${mark.name}'s (${mark.bmi})`
+  );
+}
+console.log();
+console.log("_______________");
