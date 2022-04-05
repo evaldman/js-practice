@@ -244,6 +244,7 @@ console.log(total);
 console.log("_______________");
 
 //////// objects ///////////
+
 // define key, value pairs
 // key is also called a property
 const jonas = {
@@ -253,6 +254,34 @@ const jonas = {
   job: "teacher",
   friends: ["Michael", "Peter", "Steven"],
 };
+
+///////// dot vs bracket ////////////
+
 console.log(jonas);
 console.log(jonas.age);
 console.log(jonas.friends);
+console.log(jonas["age"]);
+
+const nameKey = "Name";
+console.log(jonas["first" + nameKey]); // can't do this with dot notation
+console.log(jonas["last" + nameKey]);
+
+const interestedIn = prompt(
+  "What do you want to know about Jonas? Choose between fistName, lastName, age, job and friends"
+);
+console.log(interestedIn);
+// jonas.interestedIn returns undefined
+if (jonas[interestedIn]) {
+  console.log(jonas[interestedIn]);
+} else {
+  console.log("Incorrecr Input");
+}
+// add new properties to an object using either dot or bracket
+jonas.location = "Portugal";
+console.log(jonas);
+
+// mini challenge
+// "Jonas has 3 friends, and his best friend is Michael"
+console.log(
+  `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`
+);
