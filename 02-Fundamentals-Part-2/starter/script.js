@@ -362,3 +362,25 @@ if (mark.calcBmi() > john.calcBmi()) {
 }
 console.log();
 console.log("_______________");
+
+/////// the for loop ////////
+
+// console.log("lifting weights repetition 1");
+// console.log("lifting weights repetition 2");
+// console.log("lifting weights repetition 3");
+// console.log("lifting weights repetition 4");
+// console.log("lifting weights repetition 5");
+// console.log("lifting weights repetition 6");
+// console.log("lifting weights repetition 7");
+// console.log("lifting weights repetition 8");
+// console.log("lifting weights repetition 9");
+// console.log("lifting weights repetition 10");
+
+// loop statement has 3 parts:
+// part 1: initial value of a counter: let rep = 1
+// part 2: a logical condition that is evaluated before each iteration of the loop(before each time that the code in the loop is executed): rep <= 10(rep needs to stay below or equal to 10) if this condition is true then the next loop iteration will run, as soon as its false the loop will stop
+// part 3: update the counter after each iteration: rep ++(adding one to the value of the rep variable) (rep = rep + 1)
+// for loop keeps running while condition is TRUE
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`lifting weights repetition ${rep}`);
+}
