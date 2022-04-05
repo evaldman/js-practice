@@ -144,7 +144,7 @@ checkWinner(scoreDolphins, scoreKoalas); // test data 2
 console.log("_______________");
 
 /////// arrays ////////
-
+/*
 const friend1 = "Michael";
 const friend2 = "Steven";
 const friend3 = "Peter";
@@ -192,3 +192,34 @@ const ages = [
   calcAge(years[years.length - 1]),
 ];
 console.log(ages);
+*/
+
+////// array operations(methods) //////
+
+const friends = ["Michael", "Steven", "Peter"];
+
+// add elements
+friends.push("Jay"); // push is a function that adds elements to the end of the array and we are calling that function with the argument "Jay"
+// returns the value as the length of the new array
+console.log(friends);
+friends.unshift("John"); // adds to the front of array
+// returns length of the array
+console.log(friends);
+
+// remove elements
+
+friends.pop(); // removes last.... no argument needed
+// returns the value of the element it removed
+console.log(friends);
+friends.shift(); // removes first
+// returns element
+console.log(friends);
+
+console.log(friends.indexOf("Steven"));
+
+console.log(friends.includes("Steven"));
+console.log(friends.includes("Bob"));
+
+if (friends.includes("Peter")) {
+  console.log("Yay Peter");
+}
