@@ -244,9 +244,10 @@ console.log(total);
 console.log("_______________");
 
 //////// objects ///////////
-
+/*
 // define key, value pairs
 // key is also called a property
+
 const jonas = {
   firstName: "Jonas",
   lastName: "Schmedtmann",
@@ -285,3 +286,47 @@ console.log(jonas);
 console.log(
   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`
 );
+*/
+/////// object methods ///////////
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYear: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+
+  //calcAge: function (birthYear) {
+  //  return 2037 - birthYear;
+  //},
+  // better version of calcAge:
+  //calcAge: function () {
+  //  console.log(this);
+  // *** this variable is equal to the object on which the method is called... the object calling the method ***
+  //  *** it is a way to reference the object itself without hard coding the name of the object ***
+  //  return 2037 - this.birtYear;
+  //},
+  // even better version of calcAge:
+  // most efficient
+  calcAge: function () {
+    // we are creating a new property called age on the jonas object
+    // this way we only calculate the age once if we call this function multiple times
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      this.job
+    }. And he has ${this.hasDriversLicense ? "a" : "no"} drivers license`;
+  },
+};
+// **** any function that is attached to an object is called a method ****
+//console.log(jonas.calcAge(1991));
+//console.log(jonas["calcAge"](1991));
+//console.log(jonas.calcAge(jonas.birthYear));
+console.log(jonas.calcAge());
+console.log(jonas.age); // jonas.age does not exist until we call jonas.calcAge
+// mini challenge
+// write a method called getSummary with "Jonas is a 46-year old teacher. And he has a drivers license"
+console.log(jonas.getSummary());
