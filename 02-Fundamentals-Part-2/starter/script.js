@@ -388,7 +388,7 @@ for (let rep = 1; rep <= 10; rep++) {
 */
 
 //////////// looping arrays ///////////
-
+/*
 const jonas = [
   "Jonas",
   "Schmedtmann",
@@ -428,4 +428,27 @@ console.log("--break with number--");
 for (let i = 0; i < jonas.length; i++) {
   if (typeof jonas[i] === "number") break;
   console.log(jonas[i], typeof jonas[i]);
+}
+*/
+
+/////// looping backwards ////////
+
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+
+for (let i = jonas.length - 1; i >= 0; i--) {
+  console.log(i, jonas[i]);
+}
+for (let exercise = 1; exercise <= 3; exercise++) {
+  console.log(`starting exercise ${exercise}`);
+  // note: <= 3 is the same thing as < 4 same for the next loop <=5 could be written as < 6
+  for (let rep = 1; rep <= 5; rep++) {
+    console.log(`exercise ${exercise}: lifting weights repetition ${rep}`);
+  }
 }
