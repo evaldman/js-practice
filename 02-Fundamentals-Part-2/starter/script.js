@@ -432,7 +432,7 @@ for (let i = 0; i < jonas.length; i++) {
 */
 
 /////// looping backwards ////////
-
+/*
 const jonas = [
   "Jonas",
   "Schmedtmann",
@@ -451,4 +451,26 @@ for (let exercise = 1; exercise <= 3; exercise++) {
   for (let rep = 1; rep <= 5; rep++) {
     console.log(`exercise ${exercise}: lifting weights repetition ${rep}`);
   }
+}
+*/
+
+//////// while loop ///////////
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`lifting weights repetition ${rep}`);
+// }
+
+let rep = 1;
+while (rep <= 10) {
+  console.log(`lifting weights repetition ${rep}`);
+  rep++;
+}
+// ******* while loop does not need a counter ********** //
+let dice = Math.trunc(Math.random() * 6) + 1;
+//console.log(dice);
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log("6 finally");
 }
