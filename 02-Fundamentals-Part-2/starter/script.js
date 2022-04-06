@@ -360,7 +360,6 @@ if (mark.calcBmi() > john.calcBmi()) {
     `${john.name}'s BMI (${john.bmi}) is higher than ${mark.name}'s (${mark.bmi})`
   );
 }
-console.log();
 console.log("_______________");
 
 /////// the for loop ////////
@@ -459,7 +458,7 @@ for (let exercise = 1; exercise <= 3; exercise++) {
 // for (let rep = 1; rep <= 10; rep++) {
 //   console.log(`lifting weights repetition ${rep}`);
 // }
-
+/*
 let rep = 1;
 while (rep <= 10) {
   console.log(`lifting weights repetition ${rep}`);
@@ -474,3 +473,36 @@ while (dice !== 6) {
   dice = Math.trunc(Math.random() * 6) + 1;
   if (dice === 6) console.log("6 finally");
 }
+*/
+
+console.log("challenge 4:");
+const bills1 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips1 = [];
+const totals1 = [];
+function calcTip1(bill) {
+  //return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+  if (bill >= 50 && bill <= 300) {
+    return bill * 0.15;
+  } else {
+    return bill * 0.2;
+  }
+}
+
+for (let i = 0; i < bills1.length; i++) {
+  const tip = calcTip1(bills1[i]);
+  tips1.push(tip);
+  totals1.push(tip + bills1[i]);
+}
+console.log(tips1, totals1);
+
+function calcAvg(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum = sum + arr[i];
+    // sum += arr[i] is the short hand of the above
+  }
+  return sum / arr.length;
+}
+console.log(calcAvg(totals1));
+console.log(calcAvg(tips1));
+console.log("_______________");
