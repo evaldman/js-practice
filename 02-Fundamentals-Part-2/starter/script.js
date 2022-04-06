@@ -375,12 +375,57 @@ console.log("_______________");
 // console.log("lifting weights repetition 8");
 // console.log("lifting weights repetition 9");
 // console.log("lifting weights repetition 10");
-
+/*
 // loop statement has 3 parts:
 // part 1: initial value of a counter: let rep = 1
 // part 2: a logical condition that is evaluated before each iteration of the loop(before each time that the code in the loop is executed): rep <= 10(rep needs to stay below or equal to 10) if this condition is true then the next loop iteration will run, as soon as its false the loop will stop
 // part 3: update the counter after each iteration: rep ++(adding one to the value of the rep variable) (rep = rep + 1)
 // for loop keeps running while condition is TRUE
+
 for (let rep = 1; rep <= 10; rep++) {
   console.log(`lifting weights repetition ${rep}`);
+}
+*/
+
+//////////// looping arrays ///////////
+
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+
+const types = [];
+for (let i = 0; i < jonas.length; i++) {
+  //reading from jonas array:
+  console.log(jonas[i], typeof jonas[i]);
+
+  // filling types array:
+  // types[i] = typeof jonas[i];
+  // cleaner way of filling types array
+  types.push(typeof jonas[i]);
+}
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+// continue and break statements //
+// continue is to exit the current iteration of the loop and continue to the next
+// break is used to completely terminate the whole loop
+console.log("--only strings--");
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] !== "string") continue;
+  console.log(jonas[i], typeof jonas[i]);
+}
+console.log("--break with number--");
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] === "number") break;
+  console.log(jonas[i], typeof jonas[i]);
 }
