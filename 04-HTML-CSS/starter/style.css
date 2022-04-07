@@ -1,11 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* star selector(*) selects all of the elements on the page */
 body {
   background-color: rgb(234, 174, 124);
   font-family: Arial;
   font-size: 20px;
+  padding: 50px;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 35px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .first {
@@ -15,4 +28,29 @@ h1 {
 #your-name {
   background-color: rgb(243, 153, 18);
   border: 5px solid #444;
+  width: 400px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+#sky-image {
+  width: 300px;
+}
+
+a {
+  background-color: yellowgreen;
+}
+
+#your-name h2 {
+  color: olivedrab;
 }
