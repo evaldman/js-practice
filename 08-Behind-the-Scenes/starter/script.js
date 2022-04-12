@@ -168,3 +168,54 @@ var addArrow2 = (a, b) => {
   return a + b; // need to explicitly return if there is more than one line of code
 };
 // addArrow2(2, 5);// gets an error
+
+/////// primitives vs objects (primitive vs reference types) //////
+console.log("---------primitives vs objects---------");
+
+// primitives (Primitive Types: Number, String, Boolean, Undefined, Null, Symbol, BigInt) - stored in call stack
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age); // 31
+console.log(oldAge); // 30 .. old age not affected, because it was changed after
+
+// objects (Reference Types: Object literal, Arrays, Functions, many more(everything else)) - stored in heap
+const me2 = {
+  name: "Jonas",
+  age: 30,
+};
+const friend = me2;
+friend.age = 27;
+console.log("friend:", friend); // age = 27
+console.log("me:", me2); // age = 27
+
+//primitive types
+let lastName = "Williams";
+let oldLastName = lastName;
+lastName = "Davis";
+console.log(lastName, oldLastName);
+
+//reference types
+const jessica = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+};
+const marriedJessica = jessica; // does not create a new object in the heap, its a variable in the stack which holds the reference to the original object. Both point to the same memory address in the heap. Changing a property on one changes the other, its two different names for the same thing.
+marriedJessica.lastName = "Davis";
+console.log("before marriage:", jessica);
+console.log("after marriage:", marriedJessica);
+
+//copying objects
+const jessica2 = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+  family: ["Alice", "Bob"],
+};
+const jessicaCopy = Object.assign({}, jessica2); // creates a completely new object, only creates a copy on the first level - will not create a copy of an object inside that object
+jessicaCopy.lastName = "Davis";
+jessicaCopy.family.push("Mary");
+jessicaCopy.family.push("John");
+console.log("before marriage:", jessica2); // lastName was preserved, but family is deeply nested so Object.assign did not preserve it, and it was changed with the push
+console.log("after marriage:", jessicaCopy);
