@@ -1,7 +1,7 @@
 "use strict";
 
 //////// scope ///////////
-
+console.log("---------scope---------");
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
   //   console.log(firstName);
@@ -77,3 +77,46 @@ const z = 3;
 console.log(x === window.x); // created on the global window object
 console.log(y === window.y); // not created on the global window object
 console.log(z === window.z); // not created on the global window object
+
+//////// this keyword ///////////
+console.log("---------this---------");
+
+// this keyword/variable: Special variable that is created for every execution context (every function). Takes the value of (points to) the "owner" of the function in which the this keyword is used.
+// this is not static. It depends on how the function is called, and its value is only assigned when the function is actually called.
+// this will never point to the funtion in which we are using it, it will never point to the variable environment of the function
+
+console.log(this); // the global window object
+//functions
+const calcAgeExpr = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this); // undefined ** because we are in strict mode, in 'sloppy' mode it would be the window object **
+};
+calcAgeExpr(1991);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this); // window object. Arrow function does not get its own this keyword, instead the arrow function used the lexical this keyword - it uses the this keyword of its parent function(parent scope). window in this case(global scope)
+};
+calcAgeArrow(1980);
+
+//object
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this); // the jonas object
+    console.log(2037 - this.year);
+  },
+};
+jonas.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+
+matilda.calcAge = jonas.calcAge; // method borrowing
+console.log(matilda);
+matilda.calcAge(); // calling the method inside the jonas object on matilda results in this pointing to matilda ** this is dynamic **
+
+const f = jonas.calcAge;
+console.log(f); // just the function
+f(); // undefined, it is not attached to any object because it is a regular function call (not object)
