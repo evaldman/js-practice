@@ -1,5 +1,7 @@
 "use strict";
 
+//////// scope ///////////
+
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
   //   console.log(firstName);
@@ -31,3 +33,47 @@ const firstName = "Jonas";
 calcAge(1991);
 // console.log(age); // can't access in the outer scope
 // printAge(); // can't access in the outer scope
+
+///////// hoisting ///////
+console.log("---------hoisting---------");
+
+// variables
+console.log(me); // shows up undefined
+// console.log(job); // in TDZ - temporal dead zone
+// console.log(year); // in TDZ - temporal dead zone
+
+var me = "Jonas";
+let job = "teacher";
+const year = 1991;
+
+// functions
+console.log(addDeclaration(2, 3)); // can access function declarations
+//c onsole.log(addExpression(2, 3)); // can not acces function expression ** if it was var it would be indefined, same with arrow function **
+// console.log(addArrow(2, 3)); // can not access function expressions
+
+function addDeclaration(a, b) {
+  return a + b;
+}
+
+const addExpression = function (a, b) {
+  return a + b;
+};
+
+const addArrow = (a, b) => a + b; // returns implicitly
+
+// example
+if (!numProducts) deleteShoppingCart(); // calls function because var is undefined when its referenced in advance
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log("all products deleted");
+}
+
+var x = 1;
+let y = 2;
+const z = 3;
+
+console.log(x === window.x); // created on the global window object
+console.log(y === window.y); // not created on the global window object
+console.log(z === window.z); // not created on the global window object
