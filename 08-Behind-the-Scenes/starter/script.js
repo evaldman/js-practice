@@ -119,4 +119,52 @@ matilda.calcAge(); // calling the method inside the jonas object on matilda resu
 
 const f = jonas.calcAge;
 console.log(f); // just the function
-f(); // undefined, it is not attached to any object because it is a regular function call (not object)
+// f(); // undefined, it is not attached to any object because it is a regular function call (not object)
+
+////// regular vs arrow functions //////
+console.log("---------reg vs arrow---------");
+
+// object literal (a way we literally define objects) is in the global scope, it is not a code block
+const jonas2 = {
+  firstName: "Jonas",
+  year: 1991,
+  calcAge: function () {
+    console.log(this); // the jonas object
+    console.log(2037 - this.year);
+    // solution 1
+    /*const self = this;
+    const isMillenial = function () {
+      console.log(self); // works because self is defined as this outside of function
+      console.log(self.year >= 1981 && self.year <= 1996);
+      //   console.log(this); // undefined because functions inside methods don't have access to this outside of function, function gets its own this keyword
+      //   console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    */
+    // solution 2
+    const isMillenial = () => {
+      console.log(this); // works because arrow function does not get its own this keyword so it looks outward for it in its parent scope which is calcAge method in the jonas object. arrow function inherits the this keyword from its parent scope.  ** in the greet method the parent scope is window, in this case it is the jonas object **
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMillenial();
+  },
+  greet: () => console.log(`Hey ${this.firstName}`), // never ever use an arrow function as a method (best practice)
+  // a method is a function stored as an object property
+};
+jonas2.greet(); // returns "hey undefined".. because arrow function does not get its own this keyword, parent scope of the greet method is the global scope(window object). translates to window.firstName
+console.log(this.fistName); // undefined, because there is no firstName on the window object
+
+jonas2.calcAge();
+
+// arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5); // 2 parameters, 2 arguments
+addExpr(2, 5, 8, 12); // can add more arguments, they just won't be named
+
+var addArrow2 = (a, b) => {
+  console.log(arguments); // arrow function does not get argument keyword
+  return a + b; // need to explicitly return if there is more than one line of code
+};
+// addArrow2(2, 5);// gets an error
