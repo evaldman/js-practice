@@ -230,3 +230,34 @@ add(...x1);
 
 restaurant.orderPizza("mushrooms", "onion", "olives", "spinach");
 restaurant.orderPizza("mushrooms");
+
+//////////// short circuiting (&& and ||) ////////////
+console.log("---------short circuiting-----------");
+
+// can use any data type, can return any data type, do short-circuiting (short circuit evaluation)
+// short circuiting - for || (or) - if the first value is a truthy value it will immediately return that first value
+console.log("--- || ---");
+console.log(3 || "Jonas"); // 3
+console.log("" || "Jonas"); // Jonas
+console.log(true || 0); // true
+console.log(undefined || null); // null
+console.log(undefined || 0 || "" || "hello" || 23 || null); // hello
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1); // since restaurant.numGuests doesn't exist, it will be undefined and 10 will be returned
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2); // when restaurant.numGuests has a value, it short circuits and 23 is returned, same with guests1
+
+// short circuiting - for && (and) - if the first value is falsy it will immediately return that value
+// **** && works the opposite of || ****
+console.log("--- && ---");
+console.log(0 && "Jonas"); // 0
+console.log(7 && "Jonas"); // Jonas
+console.log("hello" && 23 && null && "Jonas"); // null
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+// can be written with &&
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
