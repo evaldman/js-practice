@@ -37,6 +37,11 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 };
 
 ////////// destructuring arrays ////////
@@ -127,3 +132,55 @@ restaurant.orderDelivery({
   mainIndex: 2,
   starterIndex: 2,
 });
+
+///////// spread operator(...) //////////
+console.log("---------spread operator-----------");
+
+const arr2 = [7, 8, 9];
+// long method (not good)
+const badNewArr = [1, 2, arr2[0], arr2[1], arr2[2]];
+console.log(badNewArr);
+const newArr = [1, 2, ...arr2]; // [1, 2, 7, 8, 9]
+// ... takes all the values out of the array and writes them individually. without the ... the array would be an array inside the new array [1, 2, [7, 8, 9]]
+console.log(newArr);
+console.log(...newArr); // logs individual elements of the array 1, 2, 7, 8, 9 (expands the array). pass the whole array as individual arguments into a function.
+
+const newMenu = [...restaurant.mainMenu, "Gnocci"];
+console.log(newMenu);
+// ***** big difference between spread operator and destructuring is that the spread operator takes all the elements from the array and does not create new variables, and as a consequence we can only use it in places where we would otherwise write values separated by commas ******
+
+// copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+// join arrays
+const fullMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(fullMenu);
+
+// ** spread operator works on all iterables - arrays, strings, maps, sets *** NOT objects ***
+
+const str = "Jonas";
+const letters = [...str, " ", "S."];
+console.log(letters);
+// ** can only use the spread operator when building an array or when passing values into a function **
+console.log(...str);
+
+// real world example
+const ingredients = [
+  // prompt("Let's make pasta! Ingredient 1?"),
+  // prompt("Ingredient 2?"),
+  // prompt("Ingredient 3?"),
+];
+console.log(ingredients);
+// without spread operator
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// with spread operator
+restaurant.orderPasta(...ingredients);
+
+//objects
+const newRestaurant = { ...restaurant, founder: "Giuseppe", foundedIn: 1998 };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = "Ristorante Roma";
+console.log(restaurantCopy);
