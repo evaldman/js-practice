@@ -271,3 +271,33 @@ console.log(guests3); // 10 because 0 is a falsy value
 // nullish: null and undefined - does NOT include 0 or ""(empty string)
 const guestsCorrect = restaurant.numGuests ?? 10;
 console.log(guestsCorrect); // 0 .. would only return 10 if first value is null or undefined
+
+////////// logical assignment operators ///////////
+console.log("---------logical assignment----------");
+
+const rest1 = {
+  name: "capri",
+  // numGuests: 20,
+  numGuests: 0,
+};
+const rest2 = {
+  name: "la piazza",
+  owner: "giovanni",
+};
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// can be written with logical assignment
+// or assignment operator
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+// nullish assignment operator (null or undefined only)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+// && assignment operator
+// rest1.owner = rest1.owner && "anonymous";
+// rest2.owner = rest2.owner && "anonymous";
+rest1.owner &&= "anonymous";
+rest2.owner &&= "anonymous";
+console.log(rest1);
+console.log(rest2);
