@@ -29,7 +29,19 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+    // as the object is received it is immediately destructured
+    // can also set default values during destructuring: just in case there are a lot of parameters and some of them do not get filled out
+    // orderDelivery: function ({ starterIndex = 1, mainIndex = 0, time = '20:00, address })
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 };
+
+////////// destructuring arrays ////////
+console.log("---------destructuring arrays-----------");
+
 const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
@@ -70,3 +82,48 @@ console.log(i, j, k);
 // console.log(r, s, t); // 8 9 undefined
 const [r = 1, s = 1, t = 1] = [8, 9];
 console.log(r, s, t); // 8 9 1
+
+///////// destructuring objects /////////////
+console.log("---------destructuring objects-----------");
+
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
+
+// default values
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters); // without default value, menu would be undefined
+
+// mutating variables
+let d = 111;
+let e = 999;
+const obj = { d: 23, e: 7, f: 14 };
+console.log(d, e); // 111 999
+({ d, e } = obj); // wrap destructuring assignment in parenthesis
+console.log(d, e); // 23 7
+
+// nested objects
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close); // 11 23
+//// can assign different variables to open and close
+const {
+  fri: { open: op, close: cl },
+} = openingHours;
+console.log(op, cl); // 11 23
+
+restaurant.orderDelivery({
+  // we are passing in one object into the function (one argument)
+  // the properties in the index don't have to match the order, only the names have to match
+  time: "22:30",
+  address: "via del sole, 21",
+  mainIndex: 2,
+  starterIndex: 2,
+});
