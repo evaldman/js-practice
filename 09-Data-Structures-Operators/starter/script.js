@@ -388,3 +388,22 @@ printGoals(...game.scored);
 // 7
 team1 < team2 && console.log("team1 is more likely to win");
 team1 > team2 && console.log("team2 is more likely to win");
+
+//////// looping arrays: for-of loop /////////
+console.log("---------for-of loop----------");
+
+const menu2 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu2) {
+  console.log(item);
+}
+for (const item of menu2.entries()) {
+  // console.log(item);
+  console.log(`${item[0] + 1}: ${item[1]}`);
+}
+// console.log([...menu2.entries()]);
+// destructure the item array
+for (const [i, el] of menu2.entries()) {
+  // console.log(item);
+  console.log(`${i + 1}: ${el}`);
+}
