@@ -528,3 +528,42 @@ for (const [team, odd] of Object.entries(game.odds)) {
   const teamDraw = team === "x" ? "draw" : `victory ${game[team]}`;
   console.log(`odd of ${teamDraw}: ${odd}`);
 }
+
+/////////// sets ///////////
+console.log("---------sets----------");
+// set - a collection of unique values. Can never have any duplicates.
+// there are no indexes in sets
+// theres no way to retrieve values out of a set
+// main use case is to remove duplicate values of arrays
+
+const ordersSet = new Set([
+  "pasta",
+  "pizza",
+  "pizza",
+  "risotto",
+  "pasta",
+  "pizza",
+]);
+console.log(ordersSet);
+console.log(new Set("Jonas"));
+console.log(ordersSet.size);
+console.log(ordersSet.has("pizza"));
+console.log(ordersSet.has("bread"));
+ordersSet.add("garlic bread");
+ordersSet.add("garlic bread");
+ordersSet.delete("risotto");
+// ordersSet.clear(); // empties the set
+console.log(ordersSet);
+
+for (const order of ordersSet) {
+  console.log(order);
+}
+
+const staff = ["waiter", "chef", "waiter", "manager", "chef", "waiter"];
+// const staffUnique = new Set(staff);
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(["waiter", "chef", "waiter", "manager", "chef", "waiter"]).size
+);
+console.log(new Set("slkfnadsjadfklnfd").size);
