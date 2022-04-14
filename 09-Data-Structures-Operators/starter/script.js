@@ -431,5 +431,28 @@ for (const [i, el] of menu2.entries()) {
   console.log(`${i + 1}: ${el}`);
 }
 ///////////// enhanced object literals //////////////
-
 // refer to line 10, 30, 47
+
+///////// optional chaining //////////////
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+// console.log(restaurant.openingHours.mon.open); // error
+// with optional chaining
+console.log(restaurant.openingHours.mon?.open); // undefined - only if the property that is before the ? exists then the open property will be read, otherwise undefined (only null and undefined NOT 0 or "")
+console.log(restaurant.openingHours?.mon?.open); // if openingHours exists and mon exists read open
+
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+for (const day of days) {
+  // console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? "closed"; // day is coming dynamically from days array (openingHours.mon)
+  console.log(`on ${day}, we open at ${open}`);
+}
+
+// methods
+console.log(restaurant.order?.(0, 1) ?? "Method does not exist");
+console.log(restaurant.orderRisotto?.(0, 1) ?? "Method does not exist");
+
+// arrays
+const users = [{ name: "Jonas", email: "hello@jonas.io" }];
+console.log(users[0]?.name ?? "User array empty");
+console.log(users[1]?.name ?? "User array empty");
