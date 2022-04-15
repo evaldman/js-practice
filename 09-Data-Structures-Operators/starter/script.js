@@ -567,3 +567,36 @@ console.log(
   new Set(["waiter", "chef", "waiter", "manager", "chef", "waiter"]).size
 );
 console.log(new Set("slkfnadsjadfklnfd").size);
+
+///////////// maps ////////////
+console.log("---------maps----------");
+// map - data structure that we can use to map values to keys
+
+const rest = new Map();
+rest.set("name", "classico italiano");
+rest.set(1, "italy");
+console.log(rest.set(2, "portugal"));
+rest
+  .set("categories", ["italian", "pizzeria", "vegetarian", "organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "we are open")
+  .set(false, "we are closed");
+console.log(rest.get("name"));
+console.log(rest.get(true));
+
+const time = 8;
+console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
+
+console.log(rest.has("categories"));
+rest.delete(2);
+const restArray = [1, 2];
+rest.set(restArray, "test");
+rest.set([1, 2], "test"); // cannot retreive with rest.get([1,2])
+console.log(rest.get([1, 2])); // undefined
+console.log(rest.get(restArray)); // test
+rest.set(document.querySelector("h1"), "heading");
+console.log(rest);
+console.log(rest.size);
+// rest.clear();
+// console.log(rest);
