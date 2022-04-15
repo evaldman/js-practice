@@ -572,7 +572,7 @@ console.log(new Set("slkfnadsjadfklnfd").size);
 console.log("---------maps----------");
 // map - data structure that we can use to map values to keys
 
-const rest = new Map();
+const rest = new Map(); // start with creating an empty map
 rest.set("name", "classico italiano");
 rest.set(1, "italy");
 console.log(rest.set(2, "portugal"));
@@ -600,3 +600,39 @@ console.log(rest);
 console.log(rest.size);
 // rest.clear();
 // console.log(rest);
+
+///////////// maps: iteration ////////////
+console.log("---------maps: iteration----------");
+
+const question = new Map([
+  ["question", "what is the best programming language?"],
+  [1, "c"],
+  [2, "java"],
+  [3, "javascript"],
+  ["correct", 3],
+  [true, "correct!"],
+  [false, "try again"],
+]);
+console.log(question);
+
+// convert object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// iteration
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") console.log(`answer ${key}: ${value}`);
+}
+const answer = Number(prompt("your answer"));
+console.log(answer);
+
+console.log(question.get(question.get("correct") === answer));
+
+// convert map to array
+console.log(...question);
+// other things that can be done
+
+console.log([...question.keys()]);
+console.log([...question.values()]);
