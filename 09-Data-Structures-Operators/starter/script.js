@@ -702,3 +702,50 @@ for (const [key, value] of gameEvents) {
   const half = key <= 45 ? "first" : "second";
   console.log(`[${half} half] ${key}: ${value}`);
 }
+///////// strings part 1 //////////
+console.log("---------strings1----------");
+// strings are 0 based
+// it is impossible to mutate strings - they are primitives
+// all methods always return a new string
+const airline = "TAP Air Portugal";
+const plane = "A320";
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log("B737"[0]);
+console.log(airline.length);
+console.log("B737".length);
+
+// methods
+// **** whenever we call a method on a string JS converts that string primitive with a string object with the same content (called boxing) *****
+console.log(airline.indexOf("r")); // only gives first occurence
+console.log(airline.lastIndexOf("r"));
+console.log(airline.indexOf("Portugal")); // case sensitive
+console.log(airline.slice(4)); // the begin parameter (position at which the extraction will start) - result is called sub string, does not change the underlying string
+console.log(airline.slice(4, 7)); // stops extracting before reaching 7
+// withour knowing the string
+console.log(airline.slice(0, airline.indexOf(" "))); // to find first word
+console.log(airline.slice(airline.lastIndexOf(" ") + 1)); // to find last word
+console.log(airline.slice(-2)); // starts extracting from the end
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // b and e are middle seats
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") {
+    console.log("you got the middle seat");
+  } else {
+    console.log("you got lucky");
+  }
+};
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
+
+// **** whenever we call a method on a string JS converts that string primitive with a string object with the same content (called boxing), then the object is converted back to a string  *****
+// JS does this behind the scenes:
+console.log(new String("string"));
+console.log(typeof new String("string"));
+
+///////// strings part 2 //////////
+console.log("---------strings2----------");
