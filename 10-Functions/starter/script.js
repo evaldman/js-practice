@@ -98,3 +98,20 @@ document.body.addEventListener("click", high5);
 
 ["jonas", "martha", "adam"].forEach(high5);
 // callbacks allow us to create abstraction - we hide the detail of some code implementation, this allows to think at a higher, deeper lever
+
+console.log("----------return new functions----------");
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+const greeterHey = greet("Hey");
+greeterHey("Bob");
+greeterHey("Joe");
+greet("Hello")("Steve");
+// works because of closure
+
+// mini challenge
+const greet2 = greeting => name => console.log(`${greeting} ${name}`);
+greet2("Hello")("Frank");
