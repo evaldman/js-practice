@@ -166,3 +166,46 @@ console.log(swiss);
 //  -- not used much in modern javascript
 // its preferred to use call() method with spread operator
 book.call(swiss, ...flightData);
+
+console.log("----------bind----------");
+// bind does not immediately call the function. It returns a new function where the this keyword is bound, so its set to whatever value we pass into bind
+// book.call(eurowings, 23, "Sara Wills")
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, "Steven Williams");
+
+const bookEW23 = book.bind(eurowings, 23); // flight number is preset for the future(called partial application, its the book function with flight number pre-defined), so only passenger name needs to be passed in
+bookEW23("John Snow");
+bookEW23("Martha Snow");
+
+// with event listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+document
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa)); // without bind, this keyword would point to the body
+
+// partial
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23); // sets this keyword to null, becuase we don't need it and rate to .23
+console.log(addVAT(100));
+
+//mini challenge - return above as a function returning a function
+
+const taxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+const taxVAT = taxRate(0.23);
+console.log(taxVAT(100));
