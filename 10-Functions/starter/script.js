@@ -41,11 +41,11 @@ const checkIn = function (flightNum, passenger) {
   flightNum = "LH999";
   passenger.name = "Mr. " + passenger.name;
 
-  if (passenger.passport === 2384769345) {
-    alert("Checked in");
-  } else {
-    alert("Wrong passport");
-  }
+  //   if (passenger.passport === 2384769345) {
+  //     alert("Checked in");
+  //   } else {
+  //     alert("Wrong passport");
+  //   }
 };
 
 checkIn(flight, jonas);
@@ -68,3 +68,33 @@ checkIn(flight, jonas);
 
 // passing by value vs passing by reference
 // JS has ONLY passing by VALUE
+
+console.log("----------callbacks----------");
+
+const oneWord = function (str) {
+  return str.replace(/ /g, "").toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
+};
+
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer("Javascript is the best", upperFirstWord);
+transformer("Javascript is the best", oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+  console.log("👋");
+};
+
+document.body.addEventListener("click", high5);
+
+["jonas", "martha", "adam"].forEach(high5);
+// callbacks allow us to create abstraction - we hide the detail of some code implementation, this allows to think at a higher, deeper lever
