@@ -278,3 +278,29 @@ document
 
 poll.displayResults.call({ answers: [5, 2, 3] });
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
+
+////// immediately invoked function expressions ////
+console.log("----------iife----------");
+
+const runOnce = function () {
+  console.log("this will never run again");
+};
+runOnce(); /// can be called again
+
+// JS expects a function statement, we can trick JS into thinking its just an expression by wrapping it in parenthesis, and we can immediately call it //
+// and it can't be called again later
+(function () {
+  console.log("this will really never run again");
+  const isPrivate = 23; // can't access this outside of this function
+})();
+// console.log(isPrivate) // not defined
+
+(() => console.log("this will also really never run again"))();
+/// **** its important to hide variables and scopes are a good tool for doing this **** ///
+
+// block is also a good place to hide a variable
+{
+  const isPrivate = 23;
+  var notPrivate = 46; // var ignores the block it's in
+}
+console.log(notPrivate);
