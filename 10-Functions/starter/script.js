@@ -330,3 +330,47 @@ console.dir(booker);
 // a closure is like a backpack that a function carries around wherever it goes. This backpack has all the variables that were present in the envionment where the function was created.
 
 // We do not have to do anything, this is a JS feature that happens automatically. we cant even access closed-over variables explicitly. a closure is not a tangible JS object.
+
+console.log("----------closure examples----------");
+
+// example 1
+let f;
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+// f was re-assigned by h
+h();
+f();
+console.dir(f);
+
+// example 2
+const boardPassengers = function (n, wait) {
+  // n = number of passengers, wait = wait time, 3 is number of groups to board
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    // setTimeout takes 2 parametrs - a function (that will be executed when timer gets there), and the time to wait in milliseconds(1000)
+    console.log(`we are now boarding all ${n} passengers`);
+    console.log(`there are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000); // wait is going to be the time passed in in seconds
+  console.log(`will start boarding in ${wait} seconds`);
+};
+
+// setTimeout(function () {
+//   console.log("timer test");
+// }, 5000);
+
+boardPassengers(180, 3);
