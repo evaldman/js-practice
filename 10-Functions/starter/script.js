@@ -304,3 +304,29 @@ runOnce(); /// can be called again
   var notPrivate = 46; // var ignores the block it's in
 }
 console.log(notPrivate);
+
+console.log("----------closures----------");
+// a closure is not a feature that we explicitly use, it happens automatically in certain situations.
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+console.dir(booker);
+// closure is the closed-over variable environment of the execution context in which a function was created, even after that execution context is gone.
+
+// a closure gives a funcion access to all the variables of its parent function, even after that parent function has returned. The function keeps a reference to it's outer scope, which preserves the scope chain throughout time.
+
+//a closure makes sure that a function doesn't lose connection to variables that existed at the function's birth place
+
+// a closure is like a backpack that a function carries around wherever it goes. This backpack has all the variables that were present in the envionment where the function was created.
+
+// We do not have to do anything, this is a JS feature that happens automatically. we cant even access closed-over variables explicitly. a closure is not a tangible JS object.
