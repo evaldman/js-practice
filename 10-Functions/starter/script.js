@@ -387,6 +387,6 @@ console.log("----------challenge2----------");
   header.style.color = "red";
 
   document.querySelector("body").addEventListener("click", function () {
-    header.style.color = "blue";
+    header.style.color = header.style.color === "blue" ? "red" : "blue";
   });
 })();
