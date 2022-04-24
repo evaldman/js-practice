@@ -85,14 +85,24 @@ console.log(arr.slice(1, -2));
 console.log(arr.slice()); // no argument creates a shallow copy
 console.log([...arr]); // same result with spread operator as slice with no argument
 
-document.querySelector("body").addEventListener("click", function () {
-  let color = document.querySelector(".welcome");
-  color.style.color = color.style.color === "red" ? "blue" : "red";
-});
 // splice - works like slice EXCEPT it changes the origina array
-console.log(arr.splice(2)); // extracts all elements after index 2
-console.log(arr); // all that is left is index 0 and 1
+// console.log(arr.splice(2)); // extracts all elements after index
+arr.splice(-1);
+console.log(arr); // all that is left
+// we are usually not interested in what the splice method returns, just what is left over
+arr.splice(1, 2); // first parameter is the starting index, second paramets is the number of elements NOT the end index
+console.log(arr);
 
-function toggle(b) {
-  b.value = b.value == "ON" ? "OFF" : "ON";
-}
+// reverse - does mutate the original array
+arr = ["a", "b", "c", "d", "e"];
+const arr2 = ["j", "i", "h", "g", "f"];
+console.log(arr2.reverse());
+console.log(arr2);
+
+// concat - does not mutate the original array
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]); // same result as concat
+
+//join
+console.log(letters.join("-"));
