@@ -106,3 +106,21 @@ console.log([...arr, ...arr2]); // same result as concat
 
 //join
 console.log(letters.join("-"));
+
+console.log("----------- at method----------");
+
+const arr3 = [23, 11, 64];
+console.log(arr3[0]);
+// same thing with at method
+console.log(arr3.at(0));
+// one big difference:
+// better for method chaining
+// getting last array element:
+// more traditional methods
+console.log(arr3[arr3.length - 1]);
+console.log(arr3.slice(-1)[0]);
+// at
+console.log(arr3.at(-1)); // gets the last element
+
+console.log("jonas".at(0));
+console.log("jonas".at(-1));
