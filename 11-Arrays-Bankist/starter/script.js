@@ -71,7 +71,7 @@ const currencies = new Map([
   ["GBP", "Pound sterling"],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -124,3 +124,44 @@ console.log(arr3.at(-1)); // gets the last element
 
 console.log("jonas".at(0));
 console.log("jonas".at(-1));
+
+console.log("----------- forEach----------");
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) { // regular
+for (const [i, movement] of movements.entries()) {
+  // index, movement (a way of setting up a counter)
+  if (movement > 0) {
+    // console.log(you deposited ${movement}`);
+    console.log(`movement ${i + 1}: you deposited ${movement}`);
+  } else {
+    // console.log(`you withdrew ${Math.abs(movement)}`);
+    console.log(`movement ${i + 1}: you withdrew ${Math.abs(movement)}`);
+    // Math.abs removes negative sign
+  }
+}
+// same result as for of
+// regular:
+// movements.forEach(function (movement) {
+//   if (movement > 0) {
+//     console.log(`you deposited ${movement}`);
+//   } else {
+//     console.log(`you withdrew ${Math.abs(movement)}`);
+//   }
+// });
+// forEach passes in the element, current index and entire array - order of parameters matter
+// with counter:
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`movement ${i + 1}: you deposited ${mov}`);
+  } else {
+    console.log(`movement ${i + 1}: you withdrew ${Math.abs(mov)}`);
+  }
+});
+// ***** continue and break statements don't work for forEach *****
+// other than that theres not really a difference from for of
+// how it works:
+// 0: function(200)
+// 1: function(200)
+// 2: function(200)
+// ...
