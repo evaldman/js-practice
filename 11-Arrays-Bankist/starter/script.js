@@ -239,3 +239,49 @@ function checkDogs(dogsJulia, dogsKate) {
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 console.log("--- test data 2 ---");
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+/////// map, filter, reduce /////
+// map - like forEach EXCEPT map creates a brand new array based on the original array. takes an array, loops over it and in each iteration it applies a callback function and to the current array element. and returns a new array. - maps the values of the original array to a new array. forEach simply allows us to do some work with each array element, map builds us a brand new array containing the results of applying an operation to the original array.
+
+// filter - used to filter for elements in the original array which satisfy a certain condition. only elements that pass the test that we specify will make it a new array that the filter returns
+
+// reduce - used to boil down ("reduce") all the elements of the original array into one single value. ("snowball effect"). no new array, only the reduced value.
+
+console.log("-------- map -------");
+
+const movements2 = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+const movementsUSD = movements2.map(function (movement) {
+  return movement * eurToUsd;
+});
+console.log(movements2);
+console.log(movementsUSD);
+
+// as an arrow function
+const movementsUsdArrow = movements2.map(movement => movement * eurToUsd);
+console.log(movementsUsdArrow);
+
+// for loop to do the same thing
+//using methods with callback functions (map) is the new and modern way //
+const movementsUSDfor = [];
+for (const movement of movements) {
+  movementsUSDfor.push(movement * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+const movementDesc = movements2.map(function (mov, i) {
+  return `movement ${
+    i + 1
+  }: you ${mov > 0 ? "deposited" : "withdrew"} ${Math.abs(mov)}`;
+  // if (mov > 0) {
+  //   return `movement ${i + 1}: you deposited ${mov}`;
+  // } else {
+  //   return `movement ${i + 1}: you withdrew ${Math.abs(mov)}`;
+  // }
+});
+// **** similar as forEach method EXCEPT:
+// in forEach we printed each line individually to the console as we were looping over the array, in each of the iterations we performed some action that was then visinble in the console like a side affect. forEach method creates side affects.
+// With map all we did was return each of the strings from the callback, they got added into a new array, and then we logged that entire array to the console, and not the elements one by one. WE DID NOT CREATE A SIDE AFFECT.
+// **** its ok to have 2 return statements, or more, in a function AS LONG AS ONLY ONE IS EXECUTED. IT'S IMPOSSIBLE FOR BOTH TO RETURN AT THE SAME TIME.
+console.log(movementDesc);
