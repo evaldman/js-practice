@@ -259,6 +259,7 @@ console.log("--- test data 2 ---");
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 /////// map, filter, reduce /////
+
 // map - like forEach EXCEPT map creates a brand new array based on the original array. takes an array, loops over it and in each iteration it applies a callback function and to the current array element. and returns a new array. - maps the values of the original array to a new array. forEach simply allows us to do some work with each array element, map builds us a brand new array containing the results of applying an operation to the original array.
 
 // filter - used to filter for elements in the original array which satisfy a certain condition. only elements that pass the test that we specify will make it a new array that the filter returns
@@ -303,3 +304,25 @@ const movementDesc = movements2.map(function (mov, i) {
 // With map all we did was return each of the strings from the callback, they got added into a new array, and then we logged that entire array to the console, and not the elements one by one. WE DID NOT CREATE A SIDE AFFECT.
 // **** its ok to have 2 return statements, or more, in a function AS LONG AS ONLY ONE IS EXECUTED. IT'S IMPOSSIBLE FOR BOTH TO RETURN AT THE SAME TIME.
 console.log(movementDesc);
+
+console.log("-------- filter -------");
+
+const deposits = movements2.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements2);
+console.log(deposits);
+
+// old way with for of loop:
+const depositsFor = [];
+for (const mov of movements2) {
+  if (mov > 0) {
+    depositsFor.push(mov);
+  }
+}
+console.log(depositsFor);
+
+const withdrawals = movements2.filter(function (mov) {
+  return mov < 0;
+});
+console.log(withdrawals);
