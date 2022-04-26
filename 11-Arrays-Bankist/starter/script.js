@@ -80,6 +80,14 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, mov) {
+    return acc + mov;
+  });
+  labelBalance.textContent = `$${balance}`;
+};
+calcDisplayBalance(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -94,7 +102,7 @@ const createUsernames = function (accs) {
 // not creating some value here, just doing some work to each account object - adding a username (side affect)//
 
 createUsernames(accounts);
-console.log(accounts);
+// console.log(accounts);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -326,3 +334,29 @@ const withdrawals = movements2.filter(function (mov) {
   return mov < 0;
 });
 console.log(withdrawals);
+
+console.log("-------- reduce -------");
+// reduce loops over the array
+// xxxxxx.reduce(function(accumulator, element, index, entire array){}, initial value)
+//accumulator is essentially like a snowball that keeps accumulating the value that we want to return
+const balance = movements2.reduce(function (acc, cur, i) {
+  console.log(`iteration ${i}: ${acc}`);
+  return acc + cur;
+}, 0);
+console.log(balance);
+// old way with for of:
+let balance2 = 0;
+for (const mov of movements2) {
+  balance2 += mov;
+}
+console.log("balance2:", balance2);
+
+// maximum value
+const max = movements2.reduce(function (acc, mov) {
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
+}, movements2[0]);
+console.log(max);
