@@ -79,6 +79,23 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map(function (name) {
+        return name[0];
+      })
+      .join("");
+  });
+};
+// not creating some value here, just doing some work to each account object - adding a username (side affect)//
+
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -93,6 +110,7 @@ displayMovements(account1.movements);
 
 /////////////////////////////////////////////////
 
+console.log("------- array methods -----");
 let arr = ["a", "b", "c", "d", "e"];
 // slice - can extract any part of an array without changing the original
 console.log(arr.slice(2));
