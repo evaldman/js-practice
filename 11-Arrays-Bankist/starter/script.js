@@ -70,7 +70,7 @@ const displayMovements = function (movements) {
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-      <div class="movements__value">${mov}</div>
+      <div class="movements__value">$${mov}</div>
     </div>
  `;
     // this method accepts 2 strings - the position in which we want to attach the html and what we want to insert
@@ -87,6 +87,43 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `$${balance}`;
 };
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .reduce(function (acc, cur) {
+      return acc + cur;
+    }, 0);
+  labelSumIn.textContent = `$${incomes}`;
+
+  const out = movements
+    .filter(function (mov) {
+      return mov < 0;
+    })
+    .reduce(function (acc, cur) {
+      return acc + cur;
+    }, 0);
+  labelSumOut.textContent = `$${Math.abs(out)}`;
+
+  const interest = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .map(function (deposit) {
+      return (deposit * 1.2) / 100;
+    })
+    .filter(function (int, i, arr) {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce(function (acc, int) {
+      return acc + int;
+    }, 0);
+  labelSumInterest.textContent = `$${interest}`;
+};
+calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -405,3 +442,24 @@ const calcAverageHumanAge = function (ages) {
 
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+console.log("-------- chaining -------");
+
+const totalDepositsUSD = movements2
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  .map(function (mov) {
+    return mov * eurToUsd;
+  })
+  .reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+console.log(totalDepositsUSD);
+
+// arrow functions:
+const totalDepositsUSD2 = movements2
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log("arrow:", totalDepositsUSD2);
