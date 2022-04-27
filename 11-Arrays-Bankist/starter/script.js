@@ -80,13 +80,13 @@ const displayMovements = function (movements) {
 // displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce(function (acc, mov) {
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce(function (acc, mov) {
     return acc + mov;
   });
-  labelBalance.textContent = `$${balance}`;
+  labelBalance.textContent = `$${acc.balance}`;
 };
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
@@ -115,7 +115,7 @@ const calcDisplaySummary = function (acc) {
       return (deposit * acc.interestRate) / 100;
     })
     .filter(function (int, i, arr) {
-      console.log(arr);
+      // console.log(arr);
       return int >= 1;
     })
     .reduce(function (acc, int) {
@@ -139,18 +139,26 @@ const createUsernames = function (accs) {
 // not creating some value here, just doing some work to each account object - adding a username (side affect)//
 createUsernames(accounts);
 // console.log(accounts);
-
+const updateUI = function (acc) {
+  // display movements
+  displayMovements(acc.movements);
+  // display balance
+  calcDisplayBalance(acc);
+  // display summary
+  calcDisplaySummary(acc);
+};
 // event handler
 let currentAccount;
 
 btnLogin.addEventListener("click", function (event) {
-  event.preventDefault();
+  event.preventDefault(); // forms automatically reload the page, that is why event.preventDefault() is needed when clicking the button of a form.
   // console.log("click");
   currentAccount = accounts.find(function (acc) {
     return acc.username === inputLoginUsername.value;
   });
-  console.log(currentAccount);
+  // console.log(currentAccount);
 
+  // currentAccount?.pin - optional chaining
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // display ui and welcome message
     labelWelcome.textContent = `Welcome back, ${
@@ -160,15 +168,36 @@ btnLogin.addEventListener("click", function (event) {
     // clear input fields
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
-    // display movements
-    displayMovements(currentAccount.movements);
-    // display balance
-    calcDisplayBalance(currentAccount.movements);
-    // display summary
-    calcDisplaySummary(currentAccount);
-    console.log("login");
+    // update UI
+    updateUI(currentAccount);
+    // console.log("login");
   }
 });
+
+btnTransfer.addEventListener("click", function (event) {
+  event.preventDefault(); // forms automatically reload the page, that is why event.preventDefault() is needed when clicking the button of a form.
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(function (acc) {
+    return acc.username === inputTransferTo.value;
+  });
+  // console.log(amount, receiverAcc);
+  inputTransferAmount.value = inputTransferTo.value = "";
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    // console.log("success");
+    // doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // update UI
+    updateUI(currentAccount);
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
