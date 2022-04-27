@@ -484,3 +484,29 @@ const avg1 = calcAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge2([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1);
 console.log(avg2);
+
+console.log("-------- find -------");
+// find method - can use to retrieve one element of an array based on a condition
+// like filter EXCEPT:
+// ONLY returns the FIRST element in the array that satisfies the condition
+// ** does NOT return a new array
+const firstWithdrawal = movements2.find(function (mov) {
+  return mov < 0;
+});
+console.log(movements2);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(function (acc) {
+  return acc.owner === "Jessica Davis";
+});
+console.log(account);
+
+let accountFor;
+for (const account of accounts) {
+  if (account.owner === "Jessica Davis") {
+    accountFor = account;
+  }
+}
+console.log(accountFor);
