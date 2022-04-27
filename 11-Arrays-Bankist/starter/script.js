@@ -61,9 +61,12 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = "";
-  movements.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
     <div class="movements__row">
@@ -229,6 +232,12 @@ btnClose.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
   inputCloseUsername.value = inputClosePin.value = "";
+});
+let sorted = false;
+btnSort.addEventListener("click", function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -670,3 +679,45 @@ const overallFLatMap = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov);
 console.log(overallFLatMap);
+
+console.log("-------- sorting arrays -------");
+
+const owners = ["Jonas", "Zach", "Adam", "Martha"];
+console.log(owners.sort()); // *** MUTATES original array
+console.log(owners);
+// sort method sorts by strings - converts numbers to strings to sort
+console.log(movements2);
+console.log(movements2.sort());
+// to sort numbers by comparing with a callback function with 2 arguments
+// these 2 parameters are current value and next value
+// return < 0 a will be before b
+// return > 0 b will be before a
+
+// ascending:
+movements2.sort(function (a, b) {
+  if (a > b) {
+    return 1; // switch order
+  }
+  if (a < b) {
+    return -1; // keep order
+  }
+});
+console.log(movements2); // sort MUTATES the array
+// can be written as:
+movements2.sort(function (a, b) {
+  return a - b;
+});
+console.log(movements2); // sort MUTATES the array
+
+// descending:
+movements2.sort(function (a, b) {
+  if (a > b) {
+    return -1;
+  }
+  if (a < b) {
+    return 1;
+  }
+});
+console.log(movements2); // sort MUTATES the array
+movements2.sort((a, b) => b - a);
+console.log(movements2); // sort MUTATES the array
