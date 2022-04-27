@@ -77,7 +77,7 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 // console.log(containerMovements.innerHTML);
 
 const calcDisplayBalance = function (movements) {
@@ -88,8 +88,8 @@ const calcDisplayBalance = function (movements) {
 };
 calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(function (mov) {
       return mov > 0;
     })
@@ -98,7 +98,7 @@ const calcDisplaySummary = function (movements) {
     }, 0);
   labelSumIn.textContent = `$${incomes}`;
 
-  const out = movements
+  const out = acc.movements
     .filter(function (mov) {
       return mov < 0;
     })
@@ -107,12 +107,12 @@ const calcDisplaySummary = function (movements) {
     }, 0);
   labelSumOut.textContent = `$${Math.abs(out)}`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(function (mov) {
       return mov > 0;
     })
     .map(function (deposit) {
-      return (deposit * 1.2) / 100;
+      return (deposit * acc.interestRate) / 100;
     })
     .filter(function (int, i, arr) {
       console.log(arr);
@@ -123,7 +123,7 @@ const calcDisplaySummary = function (movements) {
     }, 0);
   labelSumInterest.textContent = `$${interest}`;
 };
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -137,10 +137,38 @@ const createUsernames = function (accs) {
   });
 };
 // not creating some value here, just doing some work to each account object - adding a username (side affect)//
-
 createUsernames(accounts);
 // console.log(accounts);
 
+// event handler
+let currentAccount;
+
+btnLogin.addEventListener("click", function (event) {
+  event.preventDefault();
+  // console.log("click");
+  currentAccount = accounts.find(function (acc) {
+    return acc.username === inputLoginUsername.value;
+  });
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // display ui and welcome message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(" ")[0]
+    }`;
+    containerApp.style.opacity = 100;
+    // clear input fields
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
+    // display movements
+    displayMovements(currentAccount.movements);
+    // display balance
+    calcDisplayBalance(currentAccount.movements);
+    // display summary
+    calcDisplaySummary(currentAccount);
+    console.log("login");
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
