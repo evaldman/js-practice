@@ -634,3 +634,39 @@ const deposit = mov => mov > 0; // dry principle - don't repeat yourself
 console.log(movements2.some(deposit));
 console.log(movements2.every(deposit));
 console.log(movements2.filter(deposit));
+
+console.log("-------- flat/flatMap -------");
+
+const arr4 = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr4.flat());
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat());
+// flat method only goes one level deep when flattening the array by default
+console.log(arrDeep.flat(2)); // can adjust depth, default is 1
+
+// combine all accounts, and add them together:
+const accountMovements = accounts.map(function (acc) {
+  return acc.movements;
+});
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+const overallBalance = allMovements.reduce(function (acc, mov) {
+  return acc + mov;
+}, 0);
+console.log(overallBalance);
+// chaining it into one:
+const overallChained = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov);
+console.log(overallChained);
+
+/////// flatMap ////////
+// flatMap - combines map and flat into one method (better for performance)
+// essentially a map method, that also flattens at the end
+// goes only ONE level deep
+const overallFLatMap = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov);
+console.log(overallFLatMap);
