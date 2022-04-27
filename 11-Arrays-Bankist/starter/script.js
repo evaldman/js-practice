@@ -198,6 +198,19 @@ btnTransfer.addEventListener("click", function (event) {
   }
 });
 
+// loan feature - will only grant a loan if there is at least one deposit which is at least 10% of the loan amount
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add movement
+    currentAccount.movements.push(amount);
+    // update ui
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+});
+
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -586,3 +599,38 @@ for (const account of accounts) {
   }
 }
 console.log(accountFor);
+
+console.log("-------- some & every -------");
+
+console.log(movements2);
+console.log(movements2.includes(-130)); // only tests for equality
+
+// some method - test for a condition (any)
+
+const anyDeposits = movements2.some(function (mov) {
+  return mov > 0;
+});
+console.log(anyDeposits); // true
+
+const anyDeposits2 = movements2.some(mov => mov > 5000);
+console.log(anyDeposits2); // false
+
+// can also test for equality, although includes is better
+console.log(
+  movements2.some(function (mov) {
+    return mov === -130;
+  })
+); // true
+
+// every - similar to some, EXCEPT it only returns true if every element satisfies the condition
+
+console.log(
+  movements2.every(function (mov) {
+    return mov > 0;
+  })
+);
+//separate callaback
+const deposit = mov => mov > 0; // dry principle - don't repeat yourself
+console.log(movements2.some(deposit));
+console.log(movements2.every(deposit));
+console.log(movements2.filter(deposit));
