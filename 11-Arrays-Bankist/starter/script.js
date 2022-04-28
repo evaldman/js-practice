@@ -768,3 +768,37 @@ labelBalance.addEventListener("click", function () {
   // while this creates the same array, the mapping would have to be done separately
   console.log(movementsUI2);
 });
+
+/////////////// which array methods to use ////////////
+/////// what do I want to do?:
+//// mutate original array:
+// add to original: .push (end), .unshift (start)
+// remove from original: .pop (end), .shift (start), .splice (any)
+// others: .reverse, .sort, .fill
+
+//// new array:
+// computed from original: .map (loop)
+// filtered using condition: .filter
+// portion of original: .slice
+// adding original to other: .concat
+// flattening the original: .flat, .flatMap
+
+//// an array index:
+// based on value: .indexof
+// based on test condition: .findIndex
+
+//// retrieve an entire array element:
+// based on test condition: .find
+
+//// know if array includes a certain element: (returns boolean)
+// based on value: .includes
+// based on test condition: .some, .every
+
+//// get a new string:
+// based on separator string: .join
+
+//// transform array to a new value:
+// based on accumulator: .reduce - boil down an array to single value of any type: number, string, boolean or even a new array or object
+
+//// to just loop array:
+// based on callback: .forEach - does not create a new array, just loops over it
