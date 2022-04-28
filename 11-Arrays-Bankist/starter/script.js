@@ -286,7 +286,7 @@ console.log([...arr, ...arr2]); // same result as concat
 //join
 console.log(letters.join("-"));
 
-console.log("----------- at method----------");
+console.log("----------- at method ----------");
 
 const arr3 = [23, 11, 64];
 console.log(arr3[0]);
@@ -304,7 +304,7 @@ console.log(arr3.at(-1)); // gets the last element
 console.log("jonas".at(0));
 console.log("jonas".at(-1));
 
-console.log("----------- forEach----------");
+console.log("----------- forEach ----------");
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) { // regular
@@ -721,3 +721,50 @@ movements2.sort(function (a, b) {
 console.log(movements2); // sort MUTATES the array
 movements2.sort((a, b) => b - a);
 console.log(movements2); // sort MUTATES the array
+
+console.log("------ create/fill array -----");
+
+const arr5 = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+const x = new Array(7); // one argument creates an empty array with that length
+console.log(x);
+x.fill(1); // MUTATES the array
+x.fill(2, 3, 4);
+// one argument fills the whole array with that argument
+// second argument is the starting position of the array
+// third is the ending position, not inlucding it
+console.log(x);
+
+arr5.fill(23, 4, 6);
+console.log(arr5);
+
+// Array.from - Array is a function here like new Array
+const y = Array.from({ length: 7 }, function () {
+  return 1;
+});
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+const randomDice = Array.from({ length: 100 }, function () {
+  return Math.trunc(Math.random() * 6) + 1;
+});
+console.log(randomDice);
+
+// ex: if we did not have an array of movements, just values in the ui and wanted to see a total
+
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    el => Number(el.textContent.replace("$", ""))
+  );
+  // ** used Array.from to create an array from the result of querySelectorAll, which is a node list (not really an array, but an array like structure which can easily be converted to an array using Array.from). As a second step we inluded a mapping function which then transforms that initial array to an array exactly as we wanted - converting the raw element to its text content, making it a number and replacing the $ sign to nothing. **
+  // console.log(movementsUI.map(el => Number(el.textContent.replace("$", ""))));
+  console.log(movementsUI);
+  // alternate way to do this:
+  const movementsUI2 = [...document.querySelectorAll(".movements__value")];
+  // while this creates the same array, the mapping would have to be done separately
+  console.log(movementsUI2);
+});
