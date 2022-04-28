@@ -802,3 +802,90 @@ labelBalance.addEventListener("click", function () {
 
 //// to just loop array:
 // based on callback: .forEach - does not create a new array, just loops over it
+
+console.log("------ practice methods -----");
+
+// add up all deposits from all accounts
+const bankDepositSum = accounts
+  //.flatMap(acc => acc.movements)
+  .flatMap(function (acc) {
+    return acc.movements;
+    // .map(function (acc) {
+    //   return acc.movements;
+    // })
+    // .flat();
+  })
+  // .filter(mov => mov > 0)
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  // .reduce((sum, cur) => sum +cur, 0)
+  // we start with the accumulator (sum) at 0, onto that sum we kept adding the current element and with each iteration we return that entire new value (previous sum + current value)
+  .reduce(function (sum, cur) {
+    return sum + cur;
+  }, 0);
+console.log(bankDepositSum);
+
+// count number of deposits with at least $1000
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
+console.log(numDeposits1000);
+// using reduce
+const numDeposits1000R = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+// .reduce((count, cur) => (cur >= 1000 ? count++ : count), 0); ** count++ does not work here
+// .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0); ** ++count does work
+// accumulator (count) is the number of movements that are 1000 or greater, starting at 0. this initial value is like having any value outside of a loop where we keep storing a new value that we only update on a certain condition
+console.log(numDeposits1000R);
+
+let a = 10;
+console.log(a++); // returns 10 ** because ++ returns the old value, even though it did its job
+// console.log(++a) // DOES return 11
+console.log(a); // returns 11
+
+// create a new object instead of a number or string
+const sums = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    function (sum, cur) {
+      cur > 0 ? (sum.deposits += cur) : (sum.withdrawals += cur);
+      return sum;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+// starting value of this reduce is an object: { deposits: 0, withdrawals: 0 }
+console.log(sums);
+// can destructure the object immediately
+const { deposits2, withdrawals2 } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    function (sum, cur) {
+      // cur > 0 ? (sum.deposits2 += cur) : (sum.withdrawals2 += cur);
+      // can write above cleaner with bracket notation
+      sum[cur > 0 ? "deposits2" : "withdrawals2"] += cur;
+      return sum;
+    },
+    { deposits2: 0, withdrawals2: 0 }
+  );
+console.log(deposits2, withdrawals2);
+
+// create a function to convert any string to a title case
+// this is a nice title -> This Is a Nice Title
+function convertTitleCase(title) {
+  const capitalize = function (str) {
+    return str[0].toUpperCase() + str.slice(1);
+  };
+  const exceptions = ["a", "an", "and", "the", "but", "or", "on", "in", "with"];
+  const titleCase = title
+    .toLowerCase()
+    .split(" ")
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(" ");
+
+  return capitalize(titleCase); // to make sure that the first word is capitalized if it's an exception
+}
+console.log(convertTitleCase("this is a nice title"));
+console.log(convertTitleCase("this is a LONG title but not too long"));
+console.log(convertTitleCase("and here is another title with an EXAMPLE"));
