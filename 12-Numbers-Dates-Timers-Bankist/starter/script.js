@@ -164,7 +164,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -182,7 +182,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -206,7 +206,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -223,7 +223,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -251,3 +251,41 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// in JS all numbers are represented as internally as floating point numbers (decimals)
+// numbers are always stored in binary format
+
+console.log(23 === 23.0);
+// base 10 is 0 - 9
+// binary base is 0 - 1
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 === 0.3); // false
+
+// both convert string to number
+console.log(Number('23'));
+console.log(+'23');
+
+// parsing - string needs to start with a number
+
+console.log(Number.parseInt('30px', 10)); // 30
+// second argument is the base (optional)
+
+// parseFloat should be the go to to read a value out of a string
+console.log(Number.parseFloat('2.5rem')); // 2.5
+console.log(Number.parseInt('2.5rem')); // 2
+// works without Number, but its more enouraged in modern JS call parse on the Number object
+
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20px'));
+console.log(Number.isNaN(23 / 0)); // false although its infinity
+
+// best way of checking if a value is a real number //
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite('+20px'));
+console.log(Number.isFinite(23 / 0));
+
+// check if integer
+console.log(Number.isInteger(23));
+console.log(Number.isInteger(23 / 0));
