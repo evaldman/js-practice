@@ -329,3 +329,29 @@ console.log((2.7).toFixed(0)); // toFixed always returns a string
 console.log((2.7).toFixed(3)); // can choose number of decimals
 console.log((2.345).toFixed(2));
 console.log(+(2.345).toFixed(2)); // add a plus to convert to number
+
+console.log('------ remainder operator ------');
+
+console.log(5 % 2); // 1
+console.log(5 / 2); // 5 = 2 * 2 + 1
+
+console.log(8 % 3); // 2
+console.log(8 / 3); // 8 = 2 * 3 + 2
+
+// useful to check whether a number is even or odd - a number is even when its divided by 2 and the remainder is 0
+console.log(6 % 2); // 0
+console.log(6 / 2);
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(23));
+console.log(isEven(514));
+
+// can check whether any number is divisible by any other number, if the remainder is 0, it is completely divisible
+
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
