@@ -255,6 +255,7 @@ btnSort.addEventListener("click", function (e) {
 
 // in JS all numbers are represented as internally as floating point numbers (decimals)
 // numbers are always stored in binary format
+// numbers are stored internally as 64 bit - there are exactly 64 1 or 0 to represent a given number. Of these 64 bits, only 53 are used to store the digits themselves, the reset are for storing the position of the decimal point and the sign
 
 console.log(23 === 23.0);
 // base 10 is 0 - 9
@@ -374,3 +375,38 @@ const PI = 3.14_15;
 console.log(PI);
 
 console.log(Number("230_000")); // NAN - can't convert string to number with an underscore
+
+console.log("------ Bigint ------");
+// there is a limit of how big numbers can be
+console.log(2 ** 53 - 1); // the biggest number that JS can represent - anything bigger are not accurate - "unsafe numbers"
+// 2 elevated to 53 - 1, because the numbers start at 0
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(4385672349587629384562394578263945876234);
+console.log(4385672349587629384562394578263945876234n); // n at the end makes it a bigint
+// can also use the BigInt function
+console.log(BigInt(4385672349587629));
+
+// operations
+console.log(10000n + 10000n);
+console.log(398476523984567934857n * 1000000n);
+
+// cannot combine bigint with regular int
+const huge = 239843204520394578329n;
+const num = 23;
+// console.log(huge * num); // error
+console.log(huge * BigInt(num));
+// console.log(Math.sqrt(16n)); // error
+
+// 2 exceptions - comparison operators and plus operator with strings
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+console.log(20n == "20");
+
+console.log(huge + "is really big!!");
+// -----
+
+console.log(10n / 3n);
+console.log(10 / 3);
