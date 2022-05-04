@@ -410,3 +410,38 @@ console.log(huge + "is really big!!");
 
 console.log(10n / 3n);
 console.log(10 / 3);
+
+console.log("------ date & time ------");
+
+// create a date
+const now = new Date();
+console.log(now);
+
+console.log(new Date("May 03 2022 14:17:30"));
+console.log(new Date("december 24, 2015"));
+console.log(new Date(account1.movementsDates[0]));
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // ** month is 0 based **
+console.log(new Date(2037, 10, 31)); // gets auto corrected to dec 1 because only 30 days in nov
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // days * hours * minutes * seconds * milliseconds
+
+// working with dates
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // ** never use getYear() **
+console.log(future.getMonth());
+console.log(future.getDate()); // day
+console.log(future.getDay()); // day of the week
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime()); // time stamp - since jan 1 1970
+
+console.log(new Date(2142274980000));
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);
