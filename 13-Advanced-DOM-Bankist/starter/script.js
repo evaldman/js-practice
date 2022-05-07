@@ -75,3 +75,36 @@ document
     message.remove();
     // message.parentElement.removeChild(message)
   });
+
+console.log("--- styles, attributes, classes ---");
+
+//styles
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
+
+document.documentElement.style.setProperty("--color-primary", "orangered");
+
+//attributes
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.getAttribute("src"));
+console.log(logo.className);
+
+logo.alt - "Beautiful minimalist logo";
+logo.setAttribute("company", "Bankist");
+
+//classes
+logo.classList.add("c", "j"); // can do one or more
+logo.classList.remove("c");
+logo.classList.toggle("c");
+logo.classList.contains("c");
+
+// don't use
+logo.className = "jonas";
