@@ -108,3 +108,37 @@ logo.classList.contains("c");
 
 // don't use
 logo.className = "jonas";
+
+console.log("---- smooth scroll ----");
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+
+  console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+  console.log(
+    "height/width viewport",
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+  /// ** old method **
+  // scrolling
+  // window.scrollTo(
+  //   s1coords.lef + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  // *** to make it smooth, make it an object and set a behavior ***
+  // window.scrollTo({
+  //   left: s1coords.lef + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  /// ** modern method **
+  // only works in modern browsers
+  section1.scrollIntoView({ behavior: "smooth" });
+});
