@@ -34,6 +34,64 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+console.log("---- smooth scroll ----");
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  console.log(e.target.getBoundingClientRect());
+
+  console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+  console.log(
+    "height/width viewport",
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+  /// ** old method **
+  // scrolling
+  // window.scrollTo(
+  //   s1coords.lef + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+  // *** to make it smooth, make it an object and set a behavior ***
+  // window.scrollTo({
+  //   left: s1coords.lef + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  /// ** modern method **
+  // only works in modern browsers
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+// page navigation
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     // console.log("link");
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// }); // is more efficient if done with event delagation:
+// 1. add event listener to common parent element
+// 2. determine what element originated the event
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  console.log(e.target);
+  e.preventDefault();
+
+  // matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
+});
 
 console.log("--- selecting, creating & deleting elements ---");
 
@@ -109,40 +167,6 @@ logo.classList.contains("c");
 // don't use
 logo.className = "jonas";
 
-console.log("---- smooth scroll ----");
-
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-
-btnScrollTo.addEventListener("click", function (e) {
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-  console.log(e.target.getBoundingClientRect());
-
-  console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
-  console.log(
-    "height/width viewport",
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-  /// ** old method **
-  // scrolling
-  // window.scrollTo(
-  //   s1coords.lef + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
-  // );
-  // *** to make it smooth, make it an object and set a behavior ***
-  // window.scrollTo({
-  //   left: s1coords.lef + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: "smooth",
-  // });
-
-  /// ** modern method **
-  // only works in modern browsers
-  section1.scrollIntoView({ behavior: "smooth" });
-});
-
 console.log("------- events ------");
 
 const h1 = document.querySelector("h1");
@@ -174,18 +198,20 @@ const randomColor = () =>
 
 // console.log(randomColor());
 
-document.querySelector(".nav__link").addEventListener("click", function (e) {
-  // console.log("LINK");
-  this.style.backgroundColor = randomColor();
+// document.querySelector(".nav__link").addEventListener("click", function (e) {
+//   // console.log("LINK");
+//   this.style.backgroundColor = randomColor();
 
-  // stop propagation
-  // e.stopPropagation();
-});
-document.querySelector(".nav__links").addEventListener("click", function (e) {
-  // console.log("LINK");
-  this.style.backgroundColor = randomColor();
-});
-document.querySelector(".nav").addEventListener("click", function (e) {
-  // console.log("LINK");
-  this.style.backgroundColor = randomColor();
-});
+//   // stop propagation
+//   // e.stopPropagation();
+// });
+// document.querySelector(".nav__links").addEventListener("click", function (e) {
+//   // console.log("LINK");
+//   this.style.backgroundColor = randomColor();
+// });
+// document.querySelector(".nav").addEventListener("click", function (e) {
+//   // console.log("LINK");
+//   this.style.backgroundColor = randomColor();
+// });
+
+console.log("------- event delagation ------");
