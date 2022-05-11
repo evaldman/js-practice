@@ -170,6 +170,23 @@ nav.addEventListener("mouseout", function (e) {
   // }
 });
 
+// sticky nav
+
+// scroll event
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener("scroll", function () {
+  // console.log(e); // event fires off too many times so we are not going to use it
+  console.log(window.scrollY);
+
+  if (window.scrollY > initialCoords.top) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+});
+
 console.log("--- selecting, creating & deleting elements ---");
 
 // selecting elements
