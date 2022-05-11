@@ -172,20 +172,64 @@ nav.addEventListener("mouseout", function (e) {
 
 // sticky nav
 
-// scroll event
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
+// sticky navigation:
+// const initialCoords = section1.getBoundingClientRect();
+// console.log(initialCoords);
 
-window.addEventListener("scroll", function () {
-  // console.log(e); // event fires off too many times so we are not going to use it
-  console.log(window.scrollY);
+// window.addEventListener("scroll", function () {
+//   // console.log(e); // event fires off too many times so we are not going to use it
+//   console.log(window.scrollY);
 
-  if (window.scrollY > initialCoords.top) {
+//   if (window.scrollY > initialCoords.top) {
+//     nav.classList.add("sticky");
+//   } else {
+//     nav.classList.remove("sticky");
+//   }
+// });
+
+// sticky navigation: Intersection Observer Api
+
+// practice ⬇️
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(function (entry) {
+//     console.log(entry);
+//   });
+// };
+
+// const obsOptions = {
+//   root: null,
+//   // threshold: 0.1, // can have multiple thresholds in an array
+//   threshold: [0, 0.2], // 0% means that our callback will trigger each time that the target element moves completely out of the view and also as soon as it enters the view
+// };
+// // callback function gets called everytime the observed element (our target element - section1) is intersecting the root element at the threshold that we defined
+// // in this case - whenever the first section is intersecting the viewport (because root is null) at 10% (threshold) the callback function will be called
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// // could write the callback and options directly in ItersectionObserver
+// observer.observe(section1);
+// // practice ⬆️
+
+const header = document.querySelector(".header");
+const navHeight = nav.getBoundingClientRect().height; // using to set rootMargin dynamically
+console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries; // same as writing (entrie[0]) - destructuring
+  console.log(entry);
+
+  if (!entry.isIntersecting) {
     nav.classList.add("sticky");
   } else {
     nav.classList.remove("sticky");
   }
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+  // rootMargin: "-90px", // a box of 90px that will be applied outside our target element (start sticky nav a little before (90px in this case) crossing the line of section1)
 });
+headerObserver.observe(header);
 
 console.log("--- selecting, creating & deleting elements ---");
 
@@ -194,7 +238,7 @@ console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
 
-const header = document.querySelector(".header");
+// const header = document.querySelector(".header");
 const allSections = document.querySelectorAll(".section");
 console.log(allSections);
 
