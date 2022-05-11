@@ -214,4 +214,33 @@ const randomColor = () =>
 //   this.style.backgroundColor = randomColor();
 // });
 
-console.log("------- event delagation ------");
+console.log("------ dom traversing ------");
+
+// going downwards: child
+console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes);
+console.log(h1.children);
+console.log(h1.firstElementChild);
+h1.firstElementChild.style.color = "purple";
+h1.lastElementChild.style.color = "yellow";
+
+// going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest(".header").style.background = "var(--gradient-secondary)";
+
+// going sideways: siblings
+
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling); // nodes
+console.log(h1.nextSibling); // nodes
+
+console.log(h1.parentElement.children);
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) {
+//     el.style.transform = "scale(0.5)";
+//   }
+// });
