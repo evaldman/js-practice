@@ -93,6 +93,37 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
   }
 });
 
+//// tabbed components ////
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+// tabs.forEach(t => t.addEventListener("click", () => console.log("tab"))); // not efficient
+// more efficient to go through the parent and listen for a click there
+tabsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  // need .closest here because the numbers in the tab are their own <span> element
+  console.log(clicked);
+
+  // guard clause - do not execute code if we miss the button, otherwise error occurs
+  if (!clicked) return;
+
+  // remove active classes
+  tabs.forEach(tab => tab.classList.remove("operations__tab--active"));
+  tabsContent.forEach(content =>
+    content.classList.remove("operations__content--active")
+  );
+
+  // activate tab
+  clicked.classList.add("operations__tab--active");
+
+  // activate content area
+  console.log(clicked.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
+
 console.log("--- selecting, creating & deleting elements ---");
 
 // selecting elements
@@ -146,7 +177,7 @@ console.log(getComputedStyle(message).height);
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
 
-document.documentElement.style.setProperty("--color-primary", "orangered");
+// document.documentElement.style.setProperty("--color-primary", "orangered");
 
 //attributes
 const logo = document.querySelector(".nav__logo");
