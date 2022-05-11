@@ -214,7 +214,7 @@ console.log(navHeight);
 
 const stickyNav = function (entries) {
   const [entry] = entries; // same as writing (entrie[0]) - destructuring
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) {
     nav.classList.add("sticky");
@@ -235,7 +235,7 @@ headerObserver.observe(header);
 const allSections = document.querySelectorAll(".section");
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) return;
 
@@ -251,6 +251,32 @@ allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add("section--hidden");
 });
+
+// lazy loading images
+const imgTargets = document.querySelectorAll("img[data-src]");
+// console.log(imgTargets);
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  // replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+  // when an image is changed and loaded, JS emits a load event
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 
 console.log("--- selecting, creating & deleting elements ---");
 
