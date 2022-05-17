@@ -64,3 +64,27 @@ const jack = new Person("Jack", 1975);
 console.log(matilda, jack);
 // these are instances of Person
 console.log(jonas instanceof Person);
+
+console.log("----- prototypes -----");
+// each and every function automatially has a property called prototype
+// every object thats created by a certain constructor function will get access to all the methods and properties that we define on the constructor's prototype property
+console.log(Person.prototype);
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+}; // only one copy of this function exists, but all of the objects that are created using the construcrtor function can reuse this function on themselves (prototypal inheritance). The this keyword is set to the object that is calling the method.
+
+jonas.calcAge();
+matilda.calcAge();
+
+console.log(jonas.__proto__);
+console.log(jonas.__proto__ === Person.prototype);
+console.log(Person.prototype.isPrototypeOf(jonas)); // true
+console.log(Person.prototype.isPrototypeOf(matilda)); // true
+console.log(Person.prototype.isPrototypeOf(Person)); // false
+
+Person.prototype.species = "Homo sapiens";
+console.log(jonas.species);
+// jonas has own properties of name and birthyear and inherited properties of calcAge and species
+console.log(jonas.hasOwnProperty("firstName")); // true
+console.log(jonas.hasOwnProperty("species")); // false
