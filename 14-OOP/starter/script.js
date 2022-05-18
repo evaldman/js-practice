@@ -176,10 +176,15 @@ class PersonCl {
   calcAge() {
     console.log(2037 - this.birthYear);
   } // behavior
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
 }
 const jessica = new PersonCl("Jessica", 1996);
 console.log(jessica);
 jessica.calcAge();
+console.log(jessica.age);
 
 // can also add a method manually to .prototype
 PersonCl.prototype.greet = function () {
@@ -190,3 +195,30 @@ jessica.greet();
 // 1. Classes are not hoisted - even if they are class declarations
 // 2. CLasses are first-class citizens - we can pass them into functions and also return from functions ---> because classes are a special kind of function behind the scenes
 // 3. Classes are executed in strict mode
+
+console.log("----- setters / getters -----");
+// every object in JS can have setter and getter properties (assessor properties)
+//// can be added to ES6 class same way as any method (refer to PersonCl) ////
+
+const account = {
+  owner: "jonas",
+  movements: [200, 500, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  // every setter method needs to have exactly one parameter
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+// with get we can use latest as a property without calling the method
+// useful when we want to read something as a property but still want to do some calculation first
+console.log(account.latest);
+
+// with set we "set" it as a regular property
+account.latest = 50;
+console.log(account.movements);
+console.log(account.latest);
