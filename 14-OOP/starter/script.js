@@ -180,6 +180,12 @@ class PersonCl {
   get age() {
     return 2037 - this.birthYear;
   }
+
+  // static method
+  static hey() {
+    console.log("Hey there 👋");
+    console.log(this);
+  }
 }
 const jessica = new PersonCl("Jessica", 1996);
 console.log(jessica);
@@ -191,6 +197,8 @@ PersonCl.prototype.greet = function () {
   console.log(`Hello ${this.firstName}`);
 };
 jessica.greet();
+
+PersonCl.hey();
 
 // 1. Classes are not hoisted - even if they are class declarations
 // 2. CLasses are first-class citizens - we can pass them into functions and also return from functions ---> because classes are a special kind of function behind the scenes
@@ -222,3 +230,13 @@ console.log(account.latest);
 account.latest = 50;
 console.log(account.movements);
 console.log(account.latest);
+
+console.log("----- static methods -----");
+
+Person.hey = function () {
+  console.log("Hey there 👋");
+  console.log(this);
+};
+
+Person.hey();
+// does not get inherited, jonas.hey() will not work
