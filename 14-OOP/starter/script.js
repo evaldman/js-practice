@@ -314,3 +314,43 @@ ford.accelerate();
 ford.accelerate();
 ford.brake();
 ford.brake();
+
+console.log("----- class inheritance -----");
+
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+
+// Person.prototype.calcAge = function () {
+//   console.log(2037 - this.birthYear);
+// };
+
+const Student = function (firstName, birthYear, course) {
+  //   this.firstName = firstName;
+  //   this.birthYear = birthYear;
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+// create the link between Student and Person:
+Student.prototype = Object.create(Person.prototype);
+
+// a student is also a person, student is the child class that inherits from the parent class which is person. and through the prototype change methods are inherited, such as calcAge
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student("Mike", 2020, "Computer Science");
+console.log(mike);
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
