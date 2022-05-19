@@ -292,6 +292,7 @@ class Car2 {
   brake() {
     this.speed -= 5;
     console.log(this.speed);
+    return this; // from challenge 4
   }
 
   get speedUS() {
@@ -594,3 +595,79 @@ console.log("----- chaining -----");
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 // to make chaining work the above accounts need to return a value
 console.log(acc1.getMovements());
+
+console.log("----- challenge4 -----");
+
+/* 
+1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
+2. Make the 'charge' property private;
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. Then experiment with chaining!
+
+DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+// class Car2 {
+//     constructor(make, speed) {
+//       this.make = make;
+//       this.speed = speed;
+//     }
+
+//     accelerate() {
+//       this.speed += 10;
+//       console.log(this.speed);
+//     }
+
+//     brake() {
+//       this.speed -= 5;
+//       console.log(this.speed);
+//     }
+
+//     get speedUS() {
+//       return this.speed / 1.6;
+//     }
+
+//     set speedUS(speed) {
+//       this.speed = speed * 1.6;
+//     }
+//   }
+
+class EvCl extends Car2 {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const rivian = new EvCl("Rivian", 120, 23);
+console.log(rivian);
+console.log(rivian.speed);
+rivian
+  .chargeBattery(40)
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .chargeBattery(90)
+  .brake()
+  .brake();
+console.log(rivian);
+console.log(rivian.speedUS);
