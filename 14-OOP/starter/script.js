@@ -534,16 +534,19 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log("Loan approved");
+      return this;
     }
   }
 
@@ -586,3 +589,8 @@ console.log("----- encapsulation truly private -----");
 // a field is a property that will be on all instances
 // fields have to be defined outside the constructor
 // console.log(acc1.#movements); // error
+
+console.log("----- chaining -----");
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+// to make chaining work the above accounts need to return a value
+console.log(acc1.getMovements());
