@@ -508,38 +508,48 @@ jay.calcAge();
 console.log("----- class example -----");
 
 class Account {
+  // 1. pubic fields (instances)
+  locale = navigator.language;
+
+  // 2. private fields (instances)
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
     // protected property
-    this._pin = pin;
-    this._movements = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${owner}`);
   }
+  // 3. public methods
+
   // public interface (API)
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
 
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
   }
 
-  _approveLoan(val) {
-    return true;
-  }
-
   requestLoan(val) {
-    if (this._approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log("Loan approved");
     }
+  }
+
+  // 4. private methods
+  #approveLoan(val) {
+    return true;
   }
 }
 
@@ -566,3 +576,13 @@ console.log("----- encapsulation -----");
 ////// this doesn't actually make it truly private because this is just a convention to let everyone know that this property is not to be touched outside of the class
 
 console.log(acc1.getMovements());
+
+console.log("----- encapsulation truly private -----");
+// 1. public fields
+// 2. private fields
+// 3. public methods
+// 4. private methods
+
+// a field is a property that will be on all instances
+// fields have to be defined outside the constructor
+// console.log(acc1.#movements); // error
