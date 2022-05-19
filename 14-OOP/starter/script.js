@@ -511,27 +511,32 @@ class Account {
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
+    // protected property
+    this._pin = pin;
+    this._movements = [];
     this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${owner}`);
   }
   // public interface (API)
+  getMovements() {
+    return this._movements;
+  }
+
   deposit(val) {
-    this.movements.push(val);
+    this._movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
   }
 
-  approveLoan(val) {
+  _approveLoan(val) {
     return true;
   }
 
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this._approveLoan(val)) {
       this.deposit(val);
       console.log("Loan approved");
     }
@@ -549,3 +554,15 @@ acc1.deposit(250);
 acc1.withdraw(140);
 acc1.requestLoan(1000);
 console.log(acc1);
+
+console.log("----- encapsulation -----");
+// keep some properties and methods private inside the class so that they are not accessible outside the class. Then the rest of the methods are basically exposed as a public interface(can also call an API)
+// two big reasons why we need this:
+//// 1. to prevent code from outside of a class to accidentally manipulate our data inside the class.
+//// 2. when we expose only a small interface (a small API) consisting only of a few public methods then we can change all the other internal methods with more confidence because in this case we can be sure that external code does not rely on these private methods, and so therefore our code will not break when we do internal changes.
+
+// first we will protect the movements array with an underscore:
+//// this.movements will become this._movements
+////// this doesn't actually make it truly private because this is just a convention to let everyone know that this property is not to be touched outside of the class
+
+console.log(acc1.getMovements());
