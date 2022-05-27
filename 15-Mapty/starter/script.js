@@ -108,12 +108,12 @@ class App {
       );
   }
   _loadMap(position) {
-    console.log(position);
+    // console.log(position);
     //   const latitude = position.coords.latitude;
     // can destructure
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(latitude, longitude);
+    // console.log(latitude, longitude);
     //   console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
     const coords = [latitude, longitude];
