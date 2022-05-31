@@ -99,19 +99,53 @@ const getCountryAndNeighbor = function (country) {
 };
 
 // getCountryAndNeighbor('portugal');
-getCountryAndNeighbor('usa');
+// getCountryAndNeighbor('usa');
 
 // callback hell
 
-setTimeout(() => {
-  console.log('1 second passed');
-  setTimeout(() => {
-    console.log('2 seconds passed');
-    setTimeout(() => {
-      console.log('3 seconds passed');
-      setTimeout(() => {
-        console.log('4 seconds passed');
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}, 1000);
+// setTimeout(() => {
+//   console.log('1 second passed');
+//   setTimeout(() => {
+//     console.log('2 seconds passed');
+//     setTimeout(() => {
+//       console.log('3 seconds passed');
+//       setTimeout(() => {
+//         console.log('4 seconds passed');
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+
+console.log('------ pormises and fetch ------');
+
+// const request = new XMLHttpRequest();
+//   request.open('GET', `https://restcountries.com/v2/name/${country}`);
+//   request.send();
+
+// modern way to make api calls
+const request = fetch('https://restcountries.com/v2/name/portugal');
+// console.log(request);
+
+// promise = an object that is used as a placeholder for the future result of an asynchronous operation
+///// we no longer need to rely on events and callbacks passed into asynchronous functions to handle asynchronous results
+///// instead of nesting callbacks, we can chain promises for a sequence of asynchronous operaions: escaping callback hell
+
+// const getCountryDataF = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0]);
+//     });
+// };
+
+// simplified version
+const getCountryDataF = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
+};
+getCountryDataF('portugal');
