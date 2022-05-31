@@ -148,4 +148,19 @@ const getCountryDataF = function (country) {
     .then(response => response.json())
     .then(data => renderCountry(data[0]));
 };
-getCountryDataF('portugal');
+// getCountryDataF('portugal');
+
+const getCountryDataNeighbor = function (country) {
+  //country 1
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => response.json())
+    .then(data => {
+      renderCountry(data[0]);
+      const neighbor = data[0].borders?.[0];
+      //country 2
+      return fetch(`https://restcountries.com/v2/alpha/${neighbor}`)
+        .then(res => res.json())
+        .then(data => renderCountry(data, 'neighbour'));
+    });
+};
+getCountryDataNeighbor('usa');
