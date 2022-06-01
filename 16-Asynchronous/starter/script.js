@@ -23,7 +23,7 @@ const renderCountry = function (data, className = '') {
           `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  //   countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
@@ -219,9 +219,9 @@ const getCountryDataNeighbor = function (country) {
 };
 
 btn.addEventListener('click', function () {
-  getCountryDataNeighbor('usa');
+  //   getCountryDataNeighbor('portugal');
 });
-// getCountryDataNeighbor('azerbaijan');
+// getCountryDataNeighbor('United States of America');
 
 console.log('----- challenge 1 -----');
 
@@ -282,7 +282,7 @@ console.log('----- event loop -----');
 // console.log('test end');
 
 console.log('----- building a promise -----');
-
+/*
 const lotteryPromise = new Promise(function (resolve, reject) {
   console.log('Lottery draw happening');
   setTimeout(function () {
@@ -311,3 +311,54 @@ wait(2)
 
 Promise.resolve('testing').then(res => console.log(res));
 Promise.reject(new Error('testing')).catch(err => console.error(err));
+*/
+console.log('----- promisifying geolocation -----');
+
+// navigator.geolocation.getCurrentPosition(
+//   position => console.log(position),
+//   err => console.log(err)
+// );
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI2 = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Too many requests (${response.status})`);
+
+      return response.json();
+    })
+    // .then(data => console.log(data));
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.com/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+      return res.json();
+    })
+    // .then(data => console.log(data[0]))
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`Something went wrong - ${err.message}`))
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener('click', whereAmI2);
