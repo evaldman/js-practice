@@ -23,7 +23,7 @@ const renderCountry = function (data, className = '') {
           `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  //   countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
@@ -361,7 +361,7 @@ const whereAmI2 = function () {
     });
 };
 
-btn.addEventListener('click', whereAmI2);
+// btn.addEventListener('click', whereAmI2);
 
 console.log('----- challenge 2 -----');
 /* 
@@ -412,22 +412,44 @@ const createImage = function (imgPath) {
 
 let currentImage;
 
-createImage('img/img-1.jpg')
-  .then(img => {
-    currentImage = img;
-    console.log('loading');
-    return wait(2);
-  })
-  .then(() => {
-    currentImage.style.display = 'none';
-    return createImage('img/img-2.jpg');
-  })
-  .then(img => {
-    currentImage = img;
-    console.log('loading 2');
-    return wait(2);
-  })
-  .then(() => {
-    currentImage.style.display = 'none';
-  })
-  .catch(err => console.error(err));
+// createImage('img/img-1.jpg')
+//   .then(img => {
+//     currentImage = img;
+//     console.log('loading');
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImage.style.display = 'none';
+//     return createImage('img/img-2.jpg');
+//   })
+//   .then(img => {
+//     currentImage = img;
+//     console.log('loading 2');
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImage.style.display = 'none';
+//   })
+//   .catch(err => console.error(err));
+
+console.log('----- async/await -----');
+
+const whereAmI3 = async function (country) {
+  // geolocation
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+  //reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+  // country data
+  const res = await fetch(
+    `https://restcountries.com/v2/name/${dataGeo.country}`
+  );
+  // console.log(res);
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
+whereAmI3();
+console.log('first');
